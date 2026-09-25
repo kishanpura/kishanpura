@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:geo="http://www.google.com/geo/schemas/sitemap/1.0"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+  <url>
+    <loc>https://maps.app.goo.gl/iRabyMTfmXtFguSi8</loc>
+    <lastmod>2026-09-25</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+    <image:image>
+      <image:loc>https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&amp;fit=crop&amp;w=1200&amp;q=80</image:loc>
+      <image:title>Kishanpura Utrada Farmlands and Canal Irrigation</image:title>
+      <image:caption>Canal waterways and fertile crop fields in Kishanpura, Rajasthan 335062</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://images.unsplash.com/photo-1580582932707-520aed937b7b?auto=format&amp;fit=crop&amp;w=1200&amp;q=80</image:loc>
+      <image:title>GSSS Kishanpura Uttaradha Centennial School Est. 1926</image:title>
+      <image:caption>Historic school serving the village community of Kishanpura</image:caption>
+    </image:image>
+  </url>
+</urlset>

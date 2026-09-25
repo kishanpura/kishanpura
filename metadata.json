@@ -1,0 +1,6 @@
+{
+  "name": "Kishanpura Utrada - Village Portfolio & Heritage",
+  "description": "Digital portfolio and heritage archive of Kishanpura (Utrada), Rajasthan 335062 — celebrating century-old agrarian traditions, canal lifelines, landmarks, and community life.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
