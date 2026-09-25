@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { MapPin, Volume2, VolumeX, Menu, X, ExternalLink, Globe, Sun, Moon, Sparkles } from 'lucide-react';
+import { MapPin, Volume2, VolumeX, Menu, X, ExternalLink, Globe, Sun, Moon, Sparkles, Share2 } from 'lucide-react';
 import { VILLAGE_INFO } from '../data/villageData';
 import { villageSoundscape } from '../utils/soundscape';
+import { VillageLogo } from './VillageLogo';
 
 interface NavbarProps {
   currentLang: 'en' | 'hi';
@@ -45,6 +46,7 @@ export const Navbar: React.FC<NavbarProps> = ({
     { id: 'directory', label: currentLang === 'en' ? 'Directory' : 'नागरिक सेवाएँ' },
     { id: 'gallery', label: currentLang === 'en' ? 'Gallery' : 'चित्र वीथिका' },
     { id: 'faq', label: currentLang === 'en' ? 'FAQ' : 'प्रश्न' },
+    { id: 'social', label: currentLang === 'en' ? 'Social Network' : 'सोशल नेटवर्क' },
     { id: 'visitor', label: currentLang === 'en' ? 'Visit & Roots' : 'यात्रा व संवाद' },
   ];
 
@@ -74,34 +76,14 @@ export const Navbar: React.FC<NavbarProps> = ({
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-18">
-          {/* Brand Logo with Neon Modern Pulse */}
+          {/* Brand Official Village Logo */}
           <motion.button
             whileHover={{ scale: 1.02 }}
             whileTap={{ scale: 0.98 }}
             onClick={() => scrollTo('overview')}
             className="flex items-center gap-3 text-left focus:outline-none group cursor-pointer"
           >
-            <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-[#10B981] via-[#059669] to-[#047857] text-white flex items-center justify-center font-bold text-lg shadow-[0_0_20px_rgba(16,185,129,0.35)] border border-[#34D399]/40 relative overflow-hidden group-hover:shadow-[0_0_28px_rgba(16,185,129,0.6)] transition-all">
-              <span className="font-display-modern font-extrabold">K</span>
-              <motion.div
-                animate={{ x: ['-100%', '200%'] }}
-                transition={{ duration: 2.8, repeat: Infinity, ease: 'linear', repeatDelay: 1.5 }}
-                className="absolute inset-0 bg-white/30 skew-x-12"
-              />
-            </div>
-            <div>
-              <div className="flex items-center gap-2">
-                <span className="font-display-modern text-base sm:text-lg font-bold tracking-tight text-white dark:text-white group-hover:text-emerald-400 transition-colors">
-                  {currentLang === 'en' ? 'Kishanpura' : 'किशनपुरा'}
-                </span>
-                <span className="text-[10px] font-mono uppercase px-2 py-0.5 rounded-full bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 font-bold hidden sm:inline">
-                  335062
-                </span>
-              </div>
-              <p className="text-[11px] text-slate-400 font-mono hidden sm:block">
-                Sadulshahar · Rajasthan · 29.8885°N
-              </p>
-            </div>
+            <VillageLogo size="md" variant="full" theme={theme} />
           </motion.button>
 
           {/* Desktop Navigation Links with animated active pill */}
@@ -203,6 +185,18 @@ export const Navbar: React.FC<NavbarProps> = ({
             >
               <Globe className="w-3.5 h-3.5 text-cyan-400" />
               <span>{currentLang === 'en' ? 'हिंदी' : 'EN'}</span>
+            </motion.button>
+
+            {/* Quick Share to Social Network */}
+            <motion.button
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              onClick={() => scrollTo('social')}
+              title={currentLang === 'en' ? 'Share Village Portfolio on Social Networks' : 'सोशल नेटवर्क पर शेयर करें'}
+              className="p-2 rounded-xl text-xs font-semibold bg-white/10 hover:bg-white/15 text-cyan-300 border border-cyan-500/30 flex items-center gap-1.5 transition-all cursor-pointer shadow-xs"
+            >
+              <Share2 className="w-3.5 h-3.5" />
+              <span className="hidden lg:inline text-[11px] font-mono">Share</span>
             </motion.button>
 
             {/* Google Maps External Launch Pill */}

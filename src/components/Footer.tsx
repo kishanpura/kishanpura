@@ -1,7 +1,8 @@
 import React from 'react';
 import { motion } from 'motion/react';
-import { MapPin, ArrowUp, ExternalLink, Heart, Sparkles } from 'lucide-react';
+import { MapPin, ArrowUp, ExternalLink, Heart, Sparkles, MessageCircle, Radio, Facebook, Send } from 'lucide-react';
 import { VILLAGE_INFO } from '../data/villageData';
+import { VillageLogo } from './VillageLogo';
 
 interface FooterProps {
   currentLang: 'en' | 'hi';
@@ -28,19 +29,7 @@ export const Footer: React.FC<FooterProps> = ({ currentLang, theme }) => {
         <div className="grid grid-cols-1 md:grid-cols-12 gap-8 pb-12 border-b border-white/10">
           {/* Brand & Coordinates */}
           <div className="md:col-span-5 space-y-4">
-            <div className="flex items-center gap-3">
-              <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-emerald-500 to-teal-600 text-white flex items-center justify-center font-bold text-lg font-display-modern shadow-[0_0_20px_rgba(16,185,129,0.35)] border border-emerald-400/40">
-                K
-              </div>
-              <div>
-                <span className="font-display-modern text-xl font-bold tracking-tight text-white block">
-                  {currentLang === 'en' ? 'Kishanpura (Utrada)' : 'किशनपुरा (उतरादा)'}
-                </span>
-                <span className="text-xs text-slate-400 font-mono">
-                  Sadulshahar Tehsil · PIN 335062 · Rajasthan
-                </span>
-              </div>
-            </div>
+            <VillageLogo size="lg" variant="full" theme="dark" />
 
             <p className="text-xs text-slate-400 leading-relaxed max-w-sm">
               {currentLang === 'en'
@@ -60,6 +49,38 @@ export const Footer: React.FC<FooterProps> = ({ currentLang, theme }) => {
               >
                 <span>Google Maps</span>
                 <ExternalLink className="w-3 h-3" />
+              </a>
+            </div>
+
+            {/* Social Network Channels */}
+            <div className="pt-2 flex items-center gap-2">
+              <a
+                href="#social"
+                title="WhatsApp Bulletin"
+                className="w-8 h-8 rounded-xl bg-white/5 hover:bg-emerald-500/20 text-slate-300 hover:text-emerald-400 border border-white/10 flex items-center justify-center transition-colors"
+              >
+                <MessageCircle className="w-4 h-4" />
+              </a>
+              <a
+                href="#social"
+                title="YouTube Channel"
+                className="w-8 h-8 rounded-xl bg-white/5 hover:bg-rose-500/20 text-slate-300 hover:text-rose-400 border border-white/10 flex items-center justify-center transition-colors"
+              >
+                <Radio className="w-4 h-4" />
+              </a>
+              <a
+                href="#social"
+                title="Facebook Group"
+                className="w-8 h-8 rounded-xl bg-white/5 hover:bg-blue-500/20 text-slate-300 hover:text-blue-400 border border-white/10 flex items-center justify-center transition-colors"
+              >
+                <Facebook className="w-4 h-4" />
+              </a>
+              <a
+                href="#social"
+                title="Telegram Canal Alert"
+                className="w-8 h-8 rounded-xl bg-white/5 hover:bg-cyan-500/20 text-slate-300 hover:text-cyan-400 border border-white/10 flex items-center justify-center transition-colors"
+              >
+                <Send className="w-4 h-4" />
               </a>
             </div>
           </div>
@@ -98,6 +119,11 @@ export const Footer: React.FC<FooterProps> = ({ currentLang, theme }) => {
               <li>
                 <a href="#faq" className="hover:text-emerald-400 transition-colors">
                   {currentLang === 'en' ? 'Village Knowledge Hub & FAQ' : 'ज्ञान केंद्र व प्रश्न'}
+                </a>
+              </li>
+              <li>
+                <a href="#social" className="hover:text-emerald-400 transition-colors">
+                  {currentLang === 'en' ? 'Social Network & Channels' : 'सोशल नेटवर्क व चैनल'}
                 </a>
               </li>
               <li>

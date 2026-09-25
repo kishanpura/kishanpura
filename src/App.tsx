@@ -15,6 +15,7 @@ import { CultureTraditions } from './components/CultureTraditions';
 import { PublicDirectory } from './components/PublicDirectory';
 import { PhotoGallery } from './components/PhotoGallery';
 import { VillageFAQ } from './components/VillageFAQ';
+import { SocialHub } from './components/SocialHub';
 import { VisitorGuide } from './components/VisitorGuide';
 import { Footer } from './components/Footer';
 
@@ -42,6 +43,7 @@ export default function App() {
         'directory',
         'gallery',
         'faq',
+        'social',
         'visitor',
       ];
       const scrollPosition = window.scrollY + 200;
@@ -122,6 +124,9 @@ export default function App() {
 
         {/* SEO Village Knowledge Hub & Structured FAQ */}
         <VillageFAQ currentLang={currentLang} theme={theme} />
+
+        {/* Social Networking, Diaspora Hub & 1-Click Sharing */}
+        <SocialHub currentLang={currentLang} theme={theme} />
 
         {/* Visitor Guide, Connectivity & Diaspora Guestbook */}
         <VisitorGuide currentLang={currentLang} theme={theme} />

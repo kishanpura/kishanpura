@@ -14,6 +14,7 @@ import {
   ShieldCheck,
 } from 'lucide-react';
 import { VILLAGE_INFO, VILLAGE_STATS } from '../data/villageData';
+import { VillageLogo } from './VillageLogo';
 
 interface HeroSectionProps {
   currentLang: 'en' | 'hi';
@@ -139,13 +140,16 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
             className="lg:col-span-7 space-y-6"
           >
             <div className="space-y-3">
-              <div className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-orange-400 bg-orange-500/10 px-3.5 py-1 rounded-full border border-orange-500/20">
-                <Award className="w-3.5 h-3.5" />
-                <span>
-                  {currentLang === 'en'
-                    ? 'Agrarian Legacy & Cultural Archive'
-                    : 'कृषि विरासत एवं सांस्कृतिक अभिलेखागार'}
-                </span>
+              <div className="flex flex-wrap items-center gap-3">
+                <VillageLogo size="sm" variant="emblem" theme="dark" />
+                <div className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-orange-400 bg-orange-500/10 px-3.5 py-1 rounded-full border border-orange-500/20 font-mono">
+                  <Award className="w-3.5 h-3.5" />
+                  <span>
+                    {currentLang === 'en'
+                      ? 'Official Village Crest & Cultural Archive'
+                      : 'आधिकारिक ग्राम प्रतीक व सांस्कृतिक अभिलेखागार'}
+                  </span>
+                </div>
               </div>
 
               <h1 className="text-4xl sm:text-6xl lg:text-7xl font-extrabold tracking-tight leading-[1.08]">
