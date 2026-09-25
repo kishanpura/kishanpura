@@ -97,7 +97,9 @@ export const VillageFAQ: React.FC<VillageFAQProps> = ({ currentLang, theme }) =>
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: false, amount: 0.15 }}
       transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-      className="py-20 relative overflow-hidden border-t border-white/10"
+      className={`py-20 relative overflow-hidden border-t ${
+        theme === 'dark' ? 'border-white/10' : 'border-slate-200'
+      }`}
     >
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Section Header */}
@@ -108,7 +110,11 @@ export const VillageFAQ: React.FC<VillageFAQProps> = ({ currentLang, theme }) =>
           transition={{ duration: 0.6 }}
           className="text-center mb-12"
         >
-          <div className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-emerald-400 mb-2 bg-emerald-500/10 px-3.5 py-1 rounded-full border border-emerald-500/20 font-mono">
+          <div className={`inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider mb-2 px-3.5 py-1 rounded-full border font-mono ${
+            theme === 'dark'
+              ? 'text-emerald-400 bg-emerald-500/10 border-emerald-500/20'
+              : 'text-emerald-700 bg-emerald-50 border-emerald-200'
+          }`}>
             <HelpCircle className="w-4 h-4" />
             <span>
               {currentLang === 'en'
@@ -116,10 +122,14 @@ export const VillageFAQ: React.FC<VillageFAQProps> = ({ currentLang, theme }) =>
                 : 'प्रायः पूछे जाने वाले प्रश्न एवं ग्राम तथ्य'}
             </span>
           </div>
-          <h2 className="text-3xl sm:text-5xl font-extrabold font-display-modern text-white">
+          <h2 className={`text-3xl sm:text-5xl font-extrabold font-display-modern ${
+            theme === 'dark' ? 'text-white' : 'text-slate-950'
+          }`}>
             {currentLang === 'en' ? 'Village Knowledge Hub' : 'किशनपुरा ज्ञान केंद्र व सामान्य प्रश्न'}
           </h2>
-          <p className="text-xs sm:text-sm text-slate-400 mt-2">
+          <p className={`text-xs sm:text-sm mt-2 ${
+            theme === 'dark' ? 'text-slate-400' : 'text-slate-600'
+          }`}>
             {currentLang === 'en'
               ? 'Quick answers for visitors, researchers, agriculture partners, and diaspora tracing their roots to Kishanpura (Utrada).'
               : 'आगंतुकों, शोधकर्ताओं, कृषि खरीदारों और अपनी जड़ों से जुड़े प्रवासियों के लिए त्वरित व प्रामाणिक जानकारी।'}
@@ -138,8 +148,12 @@ export const VillageFAQ: React.FC<VillageFAQProps> = ({ currentLang, theme }) =>
                 viewport={{ once: true }}
                 className={`rounded-2xl transition-all border overflow-hidden backdrop-blur-xl ${
                   isOpen
-                    ? 'bg-slate-900/90 border-emerald-500/40 shadow-[0_0_20px_rgba(16,185,129,0.15)]'
-                    : 'bg-white/5 border-white/10 hover:border-white/20'
+                    ? theme === 'dark'
+                      ? 'bg-slate-900/90 border-emerald-500/40 shadow-[0_0_20px_rgba(16,185,129,0.15)]'
+                      : 'bg-white border-emerald-500/50 shadow-md ring-1 ring-emerald-500/20'
+                    : theme === 'dark'
+                    ? 'bg-white/5 border-white/10 hover:border-white/20'
+                    : 'bg-white border-slate-200 hover:border-slate-300 shadow-xs'
                 }`}
               >
                 <button
@@ -148,21 +162,31 @@ export const VillageFAQ: React.FC<VillageFAQProps> = ({ currentLang, theme }) =>
                   aria-expanded={isOpen}
                 >
                   <div className="flex items-center gap-3.5">
-                    <div className="p-2 rounded-xl bg-white/5 border border-white/10 shrink-0">
+                    <div className={`p-2 rounded-xl border shrink-0 ${
+                      theme === 'dark' ? 'bg-white/5 border-white/10' : 'bg-slate-100 border-slate-200'
+                    }`}>
                       {faq.icon}
                     </div>
                     <div>
-                      <span className="text-[10px] font-mono uppercase tracking-wider text-slate-400 block mb-0.5">
+                      <span className={`text-[10px] font-mono uppercase tracking-wider block mb-0.5 ${
+                        theme === 'dark' ? 'text-slate-400' : 'text-slate-500'
+                      }`}>
                         {faq.category}
                       </span>
-                      <h3 className="text-sm sm:text-base font-bold text-white leading-snug">
+                      <h3 className={`text-sm sm:text-base font-bold leading-snug ${
+                        theme === 'dark' ? 'text-white' : 'text-slate-900'
+                      }`}>
                         {faq.question[currentLang]}
                       </h3>
                     </div>
                   </div>
                   <ChevronDown
-                    className={`w-5 h-5 text-slate-400 shrink-0 transition-transform duration-300 ${
-                      isOpen ? 'rotate-180 text-emerald-400' : ''
+                    className={`w-5 h-5 shrink-0 transition-transform duration-300 ${
+                      isOpen
+                        ? 'rotate-180 text-emerald-500'
+                        : theme === 'dark'
+                        ? 'text-slate-400'
+                        : 'text-slate-500'
                     }`}
                   />
                 </button>
@@ -175,7 +199,11 @@ export const VillageFAQ: React.FC<VillageFAQProps> = ({ currentLang, theme }) =>
                       exit={{ height: 0, opacity: 0 }}
                       transition={{ duration: 0.3, ease: 'easeInOut' }}
                     >
-                      <div className="px-5 pb-6 sm:px-6 pt-1 text-xs sm:text-sm text-slate-300 leading-relaxed border-t border-white/5 font-normal">
+                      <div className={`px-5 pb-6 sm:px-6 pt-1 text-xs sm:text-sm leading-relaxed border-t font-normal ${
+                        theme === 'dark'
+                          ? 'text-slate-300 border-white/5'
+                          : 'text-slate-700 border-slate-100'
+                      }`}>
                         {faq.answer[currentLang]}
                       </div>
                     </motion.div>

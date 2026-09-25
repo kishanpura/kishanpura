@@ -142,7 +142,9 @@ export const SocialHub: React.FC<SocialHubProps> = ({ currentLang, theme }) => {
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: false, amount: 0.15 }}
       transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-      className="py-20 relative overflow-hidden border-t border-white/10"
+      className={`py-20 relative overflow-hidden border-t ${
+        theme === 'dark' ? 'border-white/10' : 'border-slate-200'
+      }`}
     >
       {/* Background glow */}
       <div className="absolute top-1/2 right-1/4 w-[500px] h-[500px] bg-cyan-500/10 rounded-full blur-[140px] pointer-events-none" />
@@ -156,7 +158,11 @@ export const SocialHub: React.FC<SocialHubProps> = ({ currentLang, theme }) => {
           transition={{ duration: 0.6 }}
           className="text-center max-w-3xl mx-auto mb-10"
         >
-          <div className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-cyan-400 mb-2 bg-cyan-500/10 px-3.5 py-1 rounded-full border border-cyan-500/20 font-mono">
+          <div className={`inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider mb-2 px-3.5 py-1 rounded-full border font-mono ${
+            theme === 'dark'
+              ? 'text-cyan-400 bg-cyan-500/10 border-cyan-500/20'
+              : 'text-cyan-700 bg-cyan-50 border-cyan-200'
+          }`}>
             <Share2 className="w-4 h-4" />
             <span>
               {currentLang === 'en'
@@ -164,10 +170,14 @@ export const SocialHub: React.FC<SocialHubProps> = ({ currentLang, theme }) => {
                 : 'सोशल नेटवर्किंग एवं प्रवासी समाज नेटवर्क'}
             </span>
           </div>
-          <h2 className="text-3xl sm:text-5xl font-extrabold font-display-modern text-white">
+          <h2 className={`text-3xl sm:text-5xl font-extrabold font-display-modern ${
+            theme === 'dark' ? 'text-white' : 'text-slate-950'
+          }`}>
             {currentLang === 'en' ? 'Connect With Kishanpura' : 'किशनपुरा से जुड़े व गर्व से साझा करें'}
           </h2>
-          <p className="text-xs sm:text-sm text-slate-400 mt-2">
+          <p className={`text-xs sm:text-sm mt-2 ${
+            theme === 'dark' ? 'text-slate-400' : 'text-slate-600'
+          }`}>
             {currentLang === 'en'
               ? 'Join our community broadcast channels, share our village portfolio worldwide, and stay connected with our agrarian roots.'
               : 'गाँव के आधिकारिक सूचना चैनलों से जुड़ें, देश-विदेश में बसे प्रवासियों के साथ अपनी विरासत साझा करें।'}
@@ -176,11 +186,19 @@ export const SocialHub: React.FC<SocialHubProps> = ({ currentLang, theme }) => {
 
         {/* Feature Tabs: Channels vs 1-Click Share vs Live Preview */}
         <div className="flex items-center justify-center gap-2 mb-8">
-          <div className="bg-slate-900/90 p-1.5 rounded-2xl border border-white/15 backdrop-blur-xl flex items-center gap-1">
+          <div className={`p-1.5 rounded-2xl border backdrop-blur-xl flex items-center gap-1 ${
+            theme === 'dark'
+              ? 'bg-slate-900/90 border-white/15'
+              : 'bg-white border-slate-200 shadow-md'
+          }`}>
             <button
               onClick={() => setActivePlatformTab('channels')}
               className={`relative px-4 py-2 text-xs font-semibold rounded-xl transition-all cursor-pointer ${
-                activePlatformTab === 'channels' ? 'text-white' : 'text-slate-400 hover:text-white'
+                activePlatformTab === 'channels'
+                  ? 'text-white'
+                  : theme === 'dark'
+                  ? 'text-slate-400 hover:text-white'
+                  : 'text-slate-600 hover:text-slate-950'
               }`}
             >
               {activePlatformTab === 'channels' && (
@@ -199,7 +217,11 @@ export const SocialHub: React.FC<SocialHubProps> = ({ currentLang, theme }) => {
             <button
               onClick={() => setActivePlatformTab('share')}
               className={`relative px-4 py-2 text-xs font-semibold rounded-xl transition-all cursor-pointer ${
-                activePlatformTab === 'share' ? 'text-white' : 'text-slate-400 hover:text-white'
+                activePlatformTab === 'share'
+                  ? 'text-white'
+                  : theme === 'dark'
+                  ? 'text-slate-400 hover:text-white'
+                  : 'text-slate-600 hover:text-slate-950'
               }`}
             >
               {activePlatformTab === 'share' && (
@@ -218,7 +240,11 @@ export const SocialHub: React.FC<SocialHubProps> = ({ currentLang, theme }) => {
             <button
               onClick={() => setActivePlatformTab('preview')}
               className={`relative px-4 py-2 text-xs font-semibold rounded-xl transition-all cursor-pointer ${
-                activePlatformTab === 'preview' ? 'text-white' : 'text-slate-400 hover:text-white'
+                activePlatformTab === 'preview'
+                  ? 'text-white'
+                  : theme === 'dark'
+                  ? 'text-slate-400 hover:text-white'
+                  : 'text-slate-600 hover:text-slate-950'
               }`}
             >
               {activePlatformTab === 'preview' && (
@@ -251,43 +277,63 @@ export const SocialHub: React.FC<SocialHubProps> = ({ currentLang, theme }) => {
                 <motion.div
                   key={channel.id}
                   whileHover={{ y: -4, borderColor: 'rgba(16, 185, 129, 0.4)' }}
-                  className="p-6 rounded-3xl bg-slate-900/80 backdrop-blur-2xl border border-white/10 shadow-xl flex flex-col justify-between transition-all relative overflow-hidden"
+                  className={`p-6 rounded-3xl backdrop-blur-2xl border shadow-xl flex flex-col justify-between transition-all relative overflow-hidden ${
+                    theme === 'dark'
+                      ? 'bg-slate-900/80 border-white/10'
+                      : 'bg-white border-slate-200 shadow-md'
+                  }`}
                 >
                   <div className="space-y-4">
                     <div className="flex items-center justify-between">
-                      <div className="w-12 h-12 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center">
+                      <div className={`w-12 h-12 rounded-2xl border flex items-center justify-center ${
+                        theme === 'dark' ? 'bg-white/5 border-white/10' : 'bg-slate-100 border-slate-200'
+                      }`}>
                         {channel.icon}
                       </div>
-                      <span className="text-[10px] font-mono uppercase px-2.5 py-1 rounded-full bg-emerald-500/10 text-emerald-400 border border-emerald-500/30 font-bold">
+                      <span className={`text-[10px] font-mono uppercase px-2.5 py-1 rounded-full border font-bold ${
+                        theme === 'dark'
+                          ? 'bg-emerald-500/10 text-emerald-400 border-emerald-500/30'
+                          : 'bg-emerald-50 text-emerald-700 border-emerald-200'
+                      }`}>
                         {channel.badge}
                       </span>
                     </div>
 
                     <div>
-                      <h3 className="text-lg font-bold text-white">
+                      <h3 className={`text-lg font-bold ${theme === 'dark' ? 'text-white' : 'text-slate-900'}`}>
                         {channel.name[currentLang]}
                       </h3>
-                      <div className="flex items-center gap-2 text-xs font-mono text-slate-400 mt-0.5">
-                        <span className="text-emerald-400">{channel.handle}</span>
+                      <div className={`flex items-center gap-2 text-xs font-mono mt-0.5 ${
+                        theme === 'dark' ? 'text-slate-400' : 'text-slate-500'
+                      }`}>
+                        <span className={theme === 'dark' ? 'text-emerald-400' : 'text-emerald-700 font-semibold'}>{channel.handle}</span>
                         <span>·</span>
                         <span>{channel.members}</span>
                       </div>
                     </div>
 
-                    <p className="text-xs text-slate-300 leading-relaxed">
+                    <p className={`text-xs leading-relaxed ${
+                      theme === 'dark' ? 'text-slate-300' : 'text-slate-600'
+                    }`}>
                       {channel.description[currentLang]}
                     </p>
                   </div>
 
-                  <div className="pt-5 mt-4 border-t border-white/10 flex items-center justify-between">
-                    <span className="text-[11px] text-slate-400 font-mono">
+                  <div className={`pt-5 mt-4 border-t flex items-center justify-between ${
+                    theme === 'dark' ? 'border-white/10' : 'border-slate-200'
+                  }`}>
+                    <span className={`text-[11px] font-mono ${theme === 'dark' ? 'text-slate-400' : 'text-slate-500'}`}>
                       PIN 335062 · Sadulshahar
                     </span>
                     <a
                       href={channel.actionUrl}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="px-4 py-2 rounded-xl bg-white/10 hover:bg-white/20 text-white text-xs font-semibold flex items-center gap-1.5 transition-all shadow-sm cursor-pointer"
+                      className={`px-4 py-2 rounded-xl text-xs font-semibold flex items-center gap-1.5 transition-all shadow-sm cursor-pointer ${
+                        theme === 'dark'
+                          ? 'bg-white/10 hover:bg-white/20 text-white'
+                          : 'bg-slate-100 hover:bg-slate-200 text-slate-800 border border-slate-200'
+                      }`}
                     >
                       <span>Join & Share</span>
                       <ExternalLink className="w-3.5 h-3.5" />
@@ -305,18 +351,26 @@ export const SocialHub: React.FC<SocialHubProps> = ({ currentLang, theme }) => {
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -15 }}
               transition={{ duration: 0.3 }}
-              className="max-w-3xl mx-auto bg-slate-900/90 backdrop-blur-2xl rounded-3xl p-6 sm:p-8 border border-white/15 shadow-2xl mb-12"
+              className={`max-w-3xl mx-auto backdrop-blur-2xl rounded-3xl p-6 sm:p-8 border shadow-2xl mb-12 ${
+                theme === 'dark'
+                  ? 'bg-slate-900/90 border-white/15'
+                  : 'bg-white border-slate-200 shadow-xl'
+              }`}
             >
               <div className="text-center mb-6">
                 <div className="flex justify-center mb-3">
                   <VillageLogo size="lg" variant="emblem" theme={theme} />
                 </div>
-                <h3 className="text-xl font-bold font-display-modern text-white">
+                <h3 className={`text-xl font-bold font-display-modern ${
+                  theme === 'dark' ? 'text-white' : 'text-slate-900'
+                }`}>
                   {currentLang === 'en'
                     ? 'Share Kishanpura With Family & Friends'
                     : 'किशनपुरा का लिंक सीधे सोशल मीडिया पर साझा करें'}
                 </h3>
-                <p className="text-xs text-slate-300 mt-1 max-w-md mx-auto">
+                <p className={`text-xs mt-1 max-w-md mx-auto ${
+                  theme === 'dark' ? 'text-slate-300' : 'text-slate-600'
+                }`}>
                   {currentLang === 'en'
                     ? 'Spread the word about northern Rajasthan’s premier citrus capital and centennial heritage.'
                     : 'गाँव की पहचान, किन्नू बागवानी और 100 वर्षीय गौरवशाली इतिहास को दुनिया भर में पहुँचाएं।'}
@@ -342,8 +396,12 @@ export const SocialHub: React.FC<SocialHubProps> = ({ currentLang, theme }) => {
               </div>
 
               {/* Copy Link Input Bar */}
-              <div className="p-3 bg-black/60 rounded-2xl border border-white/10 flex items-center justify-between gap-3">
-                <span className="text-xs font-mono text-slate-400 truncate pl-2">
+              <div className={`p-3 rounded-2xl border flex items-center justify-between gap-3 ${
+                theme === 'dark' ? 'bg-black/60 border-white/10' : 'bg-slate-100 border-slate-200'
+              }`}>
+                <span className={`text-xs font-mono truncate pl-2 ${
+                  theme === 'dark' ? 'text-slate-400' : 'text-slate-700'
+                }`}>
                   {shareUrl}
                 </span>
 
@@ -367,15 +425,23 @@ export const SocialHub: React.FC<SocialHubProps> = ({ currentLang, theme }) => {
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -15 }}
               transition={{ duration: 0.3 }}
-              className="max-w-2xl mx-auto bg-slate-900/90 backdrop-blur-2xl rounded-3xl p-6 sm:p-8 border border-white/15 shadow-2xl mb-12"
+              className={`max-w-2xl mx-auto backdrop-blur-2xl rounded-3xl p-6 sm:p-8 border shadow-2xl mb-12 ${
+                theme === 'dark'
+                  ? 'bg-slate-900/90 border-white/15'
+                  : 'bg-white border-slate-200 shadow-xl'
+              }`}
             >
-              <div className="text-xs font-mono font-bold uppercase text-emerald-400 mb-3 flex items-center gap-2">
+              <div className={`text-xs font-mono font-bold uppercase mb-3 flex items-center gap-2 ${
+                theme === 'dark' ? 'text-emerald-400' : 'text-emerald-700'
+              }`}>
                 <Sparkles className="w-4 h-4" />
                 <span>OPENGRAPH & SOCIAL SHARE CARD SIMULATOR</span>
               </div>
 
               {/* Card Container simulating WhatsApp/Facebook rich snippet */}
-              <div className="rounded-2xl overflow-hidden border border-white/15 bg-black/60 shadow-xl">
+              <div className={`rounded-2xl overflow-hidden border shadow-xl ${
+                theme === 'dark' ? 'border-white/15 bg-black/60' : 'border-slate-200 bg-slate-50'
+              }`}>
                 {/* Banner / Visual */}
                 <div className="relative aspect-[16/9] w-full bg-gradient-to-br from-emerald-950 via-slate-900 to-teal-950 flex flex-col items-center justify-center p-6 text-center border-b border-white/10">
                   <VillageLogo size="xl" variant="emblem" theme="dark" />
@@ -394,20 +460,28 @@ export const SocialHub: React.FC<SocialHubProps> = ({ currentLang, theme }) => {
                   <div className="text-[11px] font-mono uppercase text-slate-500">
                     KISHANPURA-UTRADA.VILLAGE
                   </div>
-                  <h4 className="text-sm font-bold text-white leading-snug">
+                  <h4 className={`text-sm font-bold leading-snug ${
+                    theme === 'dark' ? 'text-white' : 'text-slate-900'
+                  }`}>
                     Kishanpura Utrada - Village Portfolio & Heritage (Est. 1926)
                   </h4>
-                  <p className="text-xs text-slate-300 line-clamp-2">
+                  <p className={`text-xs line-clamp-2 ${
+                    theme === 'dark' ? 'text-slate-300' : 'text-slate-600'
+                  }`}>
                     Official digital archive of Kishanpura (Utrada), Rajasthan 335062. Celebrating a century of resilient education (GSSS 1926), sweet Kinnow orchards, and canal lifelines.
                   </p>
                 </div>
               </div>
 
-              <div className="mt-4 flex items-center justify-between text-xs text-slate-400 font-mono">
+              <div className={`mt-4 flex items-center justify-between text-xs font-mono ${
+                theme === 'dark' ? 'text-slate-400' : 'text-slate-500'
+              }`}>
                 <span>Schema: Place · EducationalOrg · WebSite</span>
                 <button
                   onClick={handleCopyLink}
-                  className="text-emerald-400 hover:text-emerald-300 font-semibold cursor-pointer"
+                  className={`font-semibold cursor-pointer ${
+                    theme === 'dark' ? 'text-emerald-400 hover:text-emerald-300' : 'text-emerald-700 hover:text-emerald-800'
+                  }`}
                 >
                   {copiedLink ? 'Link Copied!' : 'Copy Share URL'}
                 </button>
@@ -422,19 +496,29 @@ export const SocialHub: React.FC<SocialHubProps> = ({ currentLang, theme }) => {
           whileInView={{ opacity: 1, scale: 1 }}
           viewport={{ once: false, amount: 0.2 }}
           transition={{ duration: 0.6 }}
-          className="p-6 sm:p-8 rounded-3xl bg-gradient-to-r from-emerald-950/70 via-slate-900/90 to-cyan-950/70 border border-emerald-500/30 text-white flex flex-col md:flex-row md:items-center justify-between gap-6 shadow-2xl"
+          className={`p-6 sm:p-8 rounded-3xl border flex flex-col md:flex-row md:items-center justify-between gap-6 shadow-2xl ${
+            theme === 'dark'
+              ? 'bg-gradient-to-r from-emerald-950/70 via-slate-900/90 to-cyan-950/70 border-emerald-500/30 text-white'
+              : 'bg-gradient-to-r from-emerald-50 via-teal-50 to-cyan-50 border-emerald-300 text-slate-900 shadow-lg'
+          }`}
         >
           <div className="space-y-2 max-w-xl">
-            <div className="flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-emerald-300 font-mono">
-              <HeartHandshake className="w-4 h-4 text-amber-400" />
+            <div className={`flex items-center gap-2 text-xs font-semibold uppercase tracking-wider font-mono ${
+              theme === 'dark' ? 'text-emerald-300' : 'text-emerald-800'
+            }`}>
+              <HeartHandshake className="w-4 h-4 text-amber-500" />
               <span>Global Diaspora Connect</span>
             </div>
-            <h3 className="text-xl sm:text-2xl font-bold font-display-modern text-white">
+            <h3 className={`text-xl sm:text-2xl font-bold font-display-modern ${
+              theme === 'dark' ? 'text-white' : 'text-slate-950'
+            }`}>
               {currentLang === 'en'
                 ? 'Are you a native or descendant of Kishanpura living abroad?'
                 : 'क्या आप या आपके पूर्वज किशनपुरा से हैं और बाहर निवासरत हैं?'}
             </h3>
-            <p className="text-xs text-slate-300 leading-relaxed">
+            <p className={`text-xs leading-relaxed ${
+              theme === 'dark' ? 'text-slate-300' : 'text-slate-700'
+            }`}>
               {currentLang === 'en'
                 ? 'Join our worldwide registry. Share stories, support village infrastructure, and stay connected with community milestones.'
                 : 'गाँव की अतिथि पंजिका में अपना संदेश दर्ज करें और अपनी मिट्टी से सदा जुड़े रहें।'}

@@ -45,7 +45,9 @@ export const PhotoGallery: React.FC<PhotoGalleryProps> = ({ currentLang, theme }
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: false, amount: 0.15 }}
       transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-      className="py-20 relative overflow-hidden border-t border-white/10"
+      className={`py-20 relative overflow-hidden border-t ${
+        theme === 'dark' ? 'border-white/10' : 'border-slate-200'
+      }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Section Header */}
@@ -56,7 +58,11 @@ export const PhotoGallery: React.FC<PhotoGalleryProps> = ({ currentLang, theme }
           transition={{ duration: 0.6 }}
           className="text-center max-w-3xl mx-auto mb-10"
         >
-          <div className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-orange-400 mb-2 bg-orange-500/10 px-3.5 py-1 rounded-full border border-orange-500/20 font-mono">
+          <div className={`inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider mb-2 px-3.5 py-1 rounded-full border font-mono ${
+            theme === 'dark'
+              ? 'text-orange-400 bg-orange-500/10 border-orange-500/20'
+              : 'text-orange-600 bg-orange-50 border-orange-200'
+          }`}>
             <Camera className="w-4 h-4" />
             <span>
               {currentLang === 'en'
@@ -64,10 +70,14 @@ export const PhotoGallery: React.FC<PhotoGalleryProps> = ({ currentLang, theme }
                 : 'चित्र वीथिका एवं दृश्य दस्तावेज़'}
             </span>
           </div>
-          <h2 className="text-3xl sm:text-5xl font-extrabold font-display-modern text-white">
+          <h2 className={`text-3xl sm:text-5xl font-extrabold font-display-modern ${
+            theme === 'dark' ? 'text-white' : 'text-slate-950'
+          }`}>
             {currentLang === 'en' ? 'Glimpses of Kishanpura' : 'किशनपुरा की मनमोहक छवियाँ'}
           </h2>
-          <p className="text-xs sm:text-sm text-slate-400 mt-2">
+          <p className={`text-xs sm:text-sm mt-2 ${
+            theme === 'dark' ? 'text-slate-400' : 'text-slate-600'
+          }`}>
             {currentLang === 'en'
               ? 'Capturing the seasonal hues of yellow mustard, orange kinnow orchards, gushing canal water, and heartwarming smiles.'
               : 'सरसों के पीले रंग, किन्नू के सुनहरे बाग, नहरी पानी की कलकल और गाँव के अपनों की मुस्कान को संजोती तस्वीरें।'}
@@ -85,7 +95,9 @@ export const PhotoGallery: React.FC<PhotoGalleryProps> = ({ currentLang, theme }
                 className={`relative px-4 py-2 text-xs font-semibold rounded-xl shrink-0 transition-all cursor-pointer ${
                   isSelected
                     ? 'text-white'
-                    : 'bg-white/5 hover:bg-white/10 text-slate-400 border border-white/10'
+                    : theme === 'dark'
+                    ? 'bg-white/5 hover:bg-white/10 text-slate-300 border border-white/10'
+                    : 'bg-white hover:bg-slate-50 text-slate-700 border border-slate-200 shadow-xs'
                 }`}
               >
                 {isSelected && (
@@ -114,7 +126,11 @@ export const PhotoGallery: React.FC<PhotoGalleryProps> = ({ currentLang, theme }
                 transition={{ duration: 0.3 }}
                 whileHover={{ y: -6, borderColor: 'rgba(16, 185, 129, 0.4)' }}
                 onClick={() => setActivePhoto(photo)}
-                className="group cursor-pointer rounded-3xl overflow-hidden bg-slate-900/80 backdrop-blur-xl border border-white/10 shadow-xl flex flex-col justify-between"
+                className={`group cursor-pointer rounded-3xl overflow-hidden backdrop-blur-xl border shadow-xl flex flex-col justify-between ${
+                  theme === 'dark'
+                    ? 'bg-slate-900/80 border-white/10'
+                    : 'bg-white border-slate-200 shadow-md'
+                }`}
               >
                 <div className="relative aspect-[4/3] w-full overflow-hidden bg-slate-800">
                   <img
@@ -132,14 +148,20 @@ export const PhotoGallery: React.FC<PhotoGalleryProps> = ({ currentLang, theme }
                   </div>
                 </div>
 
-                <div className="p-5 bg-slate-900/90">
-                  <div className="text-[10px] font-mono text-emerald-400 uppercase mb-1 font-bold">
+                <div className={`p-5 ${theme === 'dark' ? 'bg-slate-900/90' : 'bg-white'}`}>
+                  <div className={`text-[10px] font-mono uppercase mb-1 font-bold ${
+                    theme === 'dark' ? 'text-emerald-400' : 'text-emerald-700'
+                  }`}>
                     {photo.category}
                   </div>
-                  <h3 className="text-base font-bold text-white">
+                  <h3 className={`text-base font-bold ${
+                    theme === 'dark' ? 'text-white' : 'text-slate-900'
+                  }`}>
                     {photo.title[currentLang]}
                   </h3>
-                  <p className="text-xs text-slate-400 mt-1 line-clamp-2">
+                  <p className={`text-xs mt-1 line-clamp-2 ${
+                    theme === 'dark' ? 'text-slate-400' : 'text-slate-600'
+                  }`}>
                     {photo.caption[currentLang]}
                   </p>
                 </div>

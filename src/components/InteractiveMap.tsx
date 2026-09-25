@@ -272,7 +272,9 @@ export const InteractiveMap: React.FC<InteractiveMapProps> = ({ currentLang, the
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: false, amount: 0.15 }}
       transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-      className="py-20 relative overflow-hidden border-t border-white/10"
+      className={`py-20 relative overflow-hidden border-t ${
+        theme === 'dark' ? 'border-white/10' : 'border-slate-200'
+      }`}
     >
       {/* Background radial glow */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[700px] bg-emerald-500/10 rounded-full blur-[140px] pointer-events-none" />
@@ -287,7 +289,7 @@ export const InteractiveMap: React.FC<InteractiveMapProps> = ({ currentLang, the
           className="flex flex-col md:flex-row md:items-end justify-between mb-8 gap-4"
         >
           <div>
-            <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-emerald-400 mb-1.5 font-mono">
+            <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-emerald-500 mb-1.5 font-mono">
               <Compass className="w-4 h-4 animate-spin" style={{ animationDuration: '10s' }} />
               <span>
                 {currentLang === 'en'
@@ -295,10 +297,14 @@ export const InteractiveMap: React.FC<InteractiveMapProps> = ({ currentLang, the
                   : 'गूगल मैप्स आधिकारिक भू-स्थान एवं पिन प्रणाली'}
               </span>
             </div>
-            <h2 className="text-3xl sm:text-5xl font-extrabold font-display-modern text-white">
+            <h2 className={`text-3xl sm:text-5xl font-extrabold font-display-modern ${
+              theme === 'dark' ? 'text-white' : 'text-slate-950'
+            }`}>
               {currentLang === 'en' ? 'Village Map & Pin Navigation' : 'किशनपुरा डिजिटल मानचित्र'}
             </h2>
-            <p className="text-xs sm:text-sm text-slate-400 mt-1 max-w-xl">
+            <p className={`text-xs sm:text-sm mt-1 max-w-xl ${
+              theme === 'dark' ? 'text-slate-400' : 'text-slate-600'
+            }`}>
               {currentLang === 'en'
                 ? 'High-precision satellite view centered at Kishanpura (Utrada). Easily test and update custom pin coordinates directly in code.'
                 : 'किशनपुरा (उतरादा) का हाई-रिज़ॉल्यूशन सैटेलाइट दृश्य। आप कोडिंग में कभी भी सही पिन लोकेशन आसानी से बदल सकते हैं।'}
@@ -312,7 +318,11 @@ export const InteractiveMap: React.FC<InteractiveMapProps> = ({ currentLang, the
               whileHover={{ scale: 1.04 }}
               whileTap={{ scale: 0.95 }}
               onClick={handleCopyCoords}
-              className="px-3.5 py-2 text-xs font-semibold rounded-xl bg-slate-900/80 hover:bg-slate-800 text-white border border-white/15 flex items-center gap-2 backdrop-blur-md shadow-md cursor-pointer transition-all"
+              className={`px-3.5 py-2 text-xs font-semibold rounded-xl border flex items-center gap-2 backdrop-blur-md shadow-md cursor-pointer transition-all ${
+                theme === 'dark'
+                  ? 'bg-slate-900/80 hover:bg-slate-800 text-white border-white/15'
+                  : 'bg-white hover:bg-slate-50 text-slate-800 border-slate-300 shadow-xs'
+              }`}
               title="Copy active GPS coordinates"
             >
               <AnimatePresence mode="wait" initial={false}>
@@ -322,7 +332,7 @@ export const InteractiveMap: React.FC<InteractiveMapProps> = ({ currentLang, the
                     initial={{ scale: 0.6, opacity: 0 }}
                     animate={{ scale: 1, opacity: 1 }}
                     exit={{ scale: 0.6, opacity: 0 }}
-                    className="flex items-center gap-1.5 text-emerald-400"
+                    className="flex items-center gap-1.5 text-emerald-500"
                   >
                     <Check className="w-3.5 h-3.5" />
                     <span>GPS Copied!</span>
@@ -333,9 +343,9 @@ export const InteractiveMap: React.FC<InteractiveMapProps> = ({ currentLang, the
                     initial={{ scale: 0.6, opacity: 0 }}
                     animate={{ scale: 1, opacity: 1 }}
                     exit={{ scale: 0.6, opacity: 0 }}
-                    className="flex items-center gap-1.5 text-slate-300"
+                    className={`flex items-center gap-1.5 ${theme === 'dark' ? 'text-slate-300' : 'text-slate-700'}`}
                   >
-                    <Copy className="w-3.5 h-3.5 text-cyan-400" />
+                    <Copy className="w-3.5 h-3.5 text-cyan-500" />
                     <span>{activeCoords.lat.toFixed(4)}°, {activeCoords.lng.toFixed(4)}°</span>
                   </motion.span>
                 )}
@@ -349,12 +359,14 @@ export const InteractiveMap: React.FC<InteractiveMapProps> = ({ currentLang, the
               onClick={() => setShowPinTester(!showPinTester)}
               className={`px-3.5 py-2 rounded-xl text-xs font-semibold border flex items-center gap-1.5 transition-all cursor-pointer ${
                 showPinTester
-                  ? 'bg-amber-500/20 text-amber-300 border-amber-500/50 shadow-[0_0_15px_rgba(245,158,11,0.25)]'
-                  : 'bg-white/10 text-slate-300 border-white/15 hover:bg-white/15'
+                  ? 'bg-amber-500/20 text-amber-500 border-amber-500/50 shadow-[0_0_15px_rgba(245,158,11,0.25)]'
+                  : theme === 'dark'
+                  ? 'bg-white/10 text-slate-300 border-white/15 hover:bg-white/15'
+                  : 'bg-white text-slate-700 border-slate-300 hover:bg-slate-50 shadow-xs'
               }`}
               title="Open Pin Location Inspector & Live Tester"
             >
-              <SlidersHorizontal className="w-3.5 h-3.5 text-amber-400" />
+              <SlidersHorizontal className="w-3.5 h-3.5 text-amber-500" />
               <span>{currentLang === 'en' ? 'Pin Customizer' : 'पिन लोकेटर'}</span>
             </motion.button>
 
@@ -395,20 +407,26 @@ export const InteractiveMap: React.FC<InteractiveMapProps> = ({ currentLang, the
               animate={{ opacity: 1, height: 'auto', scale: 1 }}
               exit={{ opacity: 0, height: 0, scale: 0.98 }}
               transition={{ duration: 0.35, ease: 'easeOut' }}
-              className="mb-8 rounded-3xl bg-slate-900/95 border border-amber-500/40 p-5 sm:p-6 backdrop-blur-2xl shadow-2xl overflow-hidden relative"
+              className={`mb-8 rounded-3xl border p-5 sm:p-6 backdrop-blur-2xl shadow-2xl overflow-hidden relative ${
+                theme === 'dark'
+                  ? 'bg-slate-900/95 border-amber-500/40'
+                  : 'bg-white border-amber-500/40 shadow-xl'
+              }`}
             >
-              <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-6 pb-4 border-b border-white/10">
+              <div className={`flex flex-col lg:flex-row lg:items-center justify-between gap-6 pb-4 border-b ${
+                theme === 'dark' ? 'border-white/10' : 'border-slate-200'
+              }`}>
                 <div>
-                  <div className="flex items-center gap-2 text-amber-400 text-xs font-mono font-bold uppercase tracking-wider mb-1">
+                  <div className="flex items-center gap-2 text-amber-500 text-xs font-mono font-bold uppercase tracking-wider mb-1">
                     <Code2 className="w-4 h-4" />
                     <span>PIN LOCATION INSPECTOR & LIVE TESTER</span>
                   </div>
-                  <h3 className="text-lg font-bold text-white">
+                  <h3 className={`text-lg font-bold ${theme === 'dark' ? 'text-white' : 'text-slate-900'}`}>
                     {currentLang === 'en'
                       ? 'Test & Preview New Coordinates on Google Maps'
                       : 'गूगल मैप्स पर नए निर्देशांक तुरंत टेस्ट करें'}
                   </h3>
-                  <p className="text-xs text-slate-300 mt-0.5">
+                  <p className={`text-xs mt-0.5 ${theme === 'dark' ? 'text-slate-300' : 'text-slate-600'}`}>
                     {currentLang === 'en'
                       ? 'Type any Latitude & Longitude below to preview it live on the map. Copy the ready code snippet to update your config file.'
                       : 'नीचे अक्षांश और देशांतर दर्ज करके मैप पर लाइव देखें और फिर कोड कॉपी करके `mapConfig.ts` में पेस्ट करें।'}
@@ -418,7 +436,7 @@ export const InteractiveMap: React.FC<InteractiveMapProps> = ({ currentLang, the
                 <div className="flex items-center gap-2">
                   <button
                     onClick={handleCopySnippet}
-                    className="px-3.5 py-1.5 rounded-xl bg-emerald-500/20 hover:bg-emerald-500/30 text-emerald-300 border border-emerald-500/40 text-xs font-semibold flex items-center gap-1.5 transition-all cursor-pointer shadow-xs"
+                    className="px-3.5 py-1.5 rounded-xl bg-emerald-500/20 hover:bg-emerald-500/30 text-emerald-600 dark:text-emerald-300 border border-emerald-500/40 text-xs font-semibold flex items-center gap-1.5 transition-all cursor-pointer shadow-xs"
                   >
                     {copiedSnippet ? <Check className="w-3.5 h-3.5" /> : <Copy className="w-3.5 h-3.5" />}
                     <span>{copiedSnippet ? 'Copied Code!' : 'Copy Code Snippet'}</span>
@@ -426,7 +444,9 @@ export const InteractiveMap: React.FC<InteractiveMapProps> = ({ currentLang, the
 
                   <button
                     onClick={() => setShowPinTester(false)}
-                    className="w-8 h-8 rounded-xl bg-white/10 hover:bg-white/20 text-slate-300 hover:text-white flex items-center justify-center transition-all cursor-pointer"
+                    className={`w-8 h-8 rounded-xl flex items-center justify-center transition-all cursor-pointer ${
+                      theme === 'dark' ? 'bg-white/10 hover:bg-white/20 text-slate-300 hover:text-white' : 'bg-slate-100 hover:bg-slate-200 text-slate-700'
+                    }`}
                   >
                     ✕
                   </button>
@@ -439,7 +459,7 @@ export const InteractiveMap: React.FC<InteractiveMapProps> = ({ currentLang, the
                 <form onSubmit={handleApplyCustomPin} className="lg:col-span-6 space-y-3">
                   <div className="grid grid-cols-2 gap-3">
                     <div>
-                      <label className="block text-[11px] font-mono text-slate-400 mb-1">
+                      <label className={`block text-[11px] font-mono mb-1 ${theme === 'dark' ? 'text-slate-400' : 'text-slate-600'}`}>
                         Latitude (e.g. 29.8885022)
                       </label>
                       <input
@@ -447,11 +467,15 @@ export const InteractiveMap: React.FC<InteractiveMapProps> = ({ currentLang, the
                         value={customLatInput}
                         onChange={(e) => setCustomLatInput(e.target.value)}
                         placeholder="29.8885022"
-                        className="w-full px-3 py-2 rounded-xl bg-black/60 border border-white/20 text-xs font-mono text-emerald-300 focus:outline-none focus:border-amber-400 transition-colors"
+                        className={`w-full px-3 py-2 rounded-xl text-xs font-mono transition-colors focus:outline-none focus:border-amber-400 border ${
+                          theme === 'dark'
+                            ? 'bg-black/60 border-white/20 text-emerald-300'
+                            : 'bg-slate-50 border-slate-300 text-slate-900 focus:bg-white'
+                        }`}
                       />
                     </div>
                     <div>
-                      <label className="block text-[11px] font-mono text-slate-400 mb-1">
+                      <label className={`block text-[11px] font-mono mb-1 ${theme === 'dark' ? 'text-slate-400' : 'text-slate-600'}`}>
                         Longitude (e.g. 74.2898204)
                       </label>
                       <input
@@ -459,7 +483,11 @@ export const InteractiveMap: React.FC<InteractiveMapProps> = ({ currentLang, the
                         value={customLngInput}
                         onChange={(e) => setCustomLngInput(e.target.value)}
                         placeholder="74.2898204"
-                        className="w-full px-3 py-2 rounded-xl bg-black/60 border border-white/20 text-xs font-mono text-emerald-300 focus:outline-none focus:border-amber-400 transition-colors"
+                        className={`w-full px-3 py-2 rounded-xl text-xs font-mono transition-colors focus:outline-none focus:border-amber-400 border ${
+                          theme === 'dark'
+                            ? 'bg-black/60 border-white/20 text-emerald-300'
+                            : 'bg-slate-50 border-slate-300 text-slate-900 focus:bg-white'
+                        }`}
                       />
                     </div>
                   </div>
@@ -476,7 +504,11 @@ export const InteractiveMap: React.FC<InteractiveMapProps> = ({ currentLang, the
                     <button
                       type="button"
                       onClick={handleResetToDefault}
-                      className="px-3.5 py-2 rounded-xl bg-white/10 hover:bg-white/15 text-slate-300 text-xs font-semibold flex items-center gap-1.5 cursor-pointer transition-all"
+                      className={`px-3.5 py-2 rounded-xl text-xs font-semibold flex items-center gap-1.5 cursor-pointer transition-all border ${
+                        theme === 'dark'
+                          ? 'bg-white/10 hover:bg-white/15 text-slate-300 border-white/10'
+                          : 'bg-slate-100 hover:bg-slate-200 text-slate-700 border-slate-200'
+                      }`}
                     >
                       <RotateCcw className="w-3.5 h-3.5" />
                       <span>{currentLang === 'en' ? 'Reset to Default Pin' : 'डिफ़ॉल्ट पर रीसेट'}</span>
@@ -488,7 +520,7 @@ export const InteractiveMap: React.FC<InteractiveMapProps> = ({ currentLang, the
                           initial={{ opacity: 0, x: -8 }}
                           animate={{ opacity: 1, x: 0 }}
                           exit={{ opacity: 0 }}
-                          className="text-xs text-emerald-400 font-semibold flex items-center gap-1"
+                          className="text-xs text-emerald-500 font-semibold flex items-center gap-1"
                         >
                           <CheckCircle2 className="w-3.5 h-3.5" />
                           <span>Google Map Updated!</span>
@@ -499,10 +531,12 @@ export const InteractiveMap: React.FC<InteractiveMapProps> = ({ currentLang, the
                 </form>
 
                 {/* Where to edit in code instructions */}
-                <div className="lg:col-span-6 bg-black/70 p-4 rounded-2xl border border-white/10 font-mono text-[11px] text-slate-300">
+                <div className={`lg:col-span-6 p-4 rounded-2xl border font-mono text-[11px] ${
+                  theme === 'dark' ? 'bg-black/70 border-white/10 text-slate-300' : 'bg-slate-900 border-slate-800 text-slate-200 shadow-md'
+                }`}>
                   <div className="text-amber-400 font-bold mb-1 flex items-center justify-between">
                     <span>// FILE: src/config/mapConfig.ts</span>
-                    <span className="text-[10px] text-slate-500">LINE 33-36</span>
+                    <span className="text-[10px] text-slate-400">LINE 33-36</span>
                   </div>
                   <pre className="text-emerald-300 leading-relaxed overflow-x-auto">
 {`coordinates: {
@@ -522,11 +556,17 @@ export const InteractiveMap: React.FC<InteractiveMapProps> = ({ currentLang, the
         {/* Map Control Bar & Category Pills */}
         <div className="flex flex-wrap items-center justify-between gap-4 mb-6">
           {/* Provider Toggle (Google Maps vs Landmark Explorer) */}
-          <div className="flex items-center gap-1.5 bg-slate-900/90 p-1.5 rounded-2xl border border-white/15 backdrop-blur-xl shadow-lg">
+          <div className={`flex items-center gap-1.5 p-1.5 rounded-2xl border backdrop-blur-xl shadow-lg ${
+            theme === 'dark' ? 'bg-slate-900/90 border-white/15' : 'bg-white border-slate-200'
+          }`}>
             <button
               onClick={() => setMapProvider('google')}
               className={`relative px-4 py-2 text-xs font-semibold rounded-xl transition-all cursor-pointer ${
-                mapProvider === 'google' ? 'text-white' : 'text-slate-400 hover:text-white'
+                mapProvider === 'google'
+                  ? 'text-white'
+                  : theme === 'dark'
+                  ? 'text-slate-400 hover:text-white'
+                  : 'text-slate-600 hover:text-slate-900'
               }`}
             >
               {mapProvider === 'google' && (
@@ -545,7 +585,11 @@ export const InteractiveMap: React.FC<InteractiveMapProps> = ({ currentLang, the
             <button
               onClick={() => setMapProvider('geospatial')}
               className={`relative px-4 py-2 text-xs font-semibold rounded-xl transition-all cursor-pointer ${
-                mapProvider === 'geospatial' ? 'text-white' : 'text-slate-400 hover:text-white'
+                mapProvider === 'geospatial'
+                  ? 'text-white'
+                  : theme === 'dark'
+                  ? 'text-slate-400 hover:text-white'
+                  : 'text-slate-600 hover:text-slate-900'
               }`}
             >
               {mapProvider === 'geospatial' && (
@@ -565,13 +609,17 @@ export const InteractiveMap: React.FC<InteractiveMapProps> = ({ currentLang, the
           {/* Sub-controls: Satellite vs Map + Interactive Zoom */}
           <div className="flex items-center gap-2">
             {mapProvider === 'google' ? (
-              <div className="flex items-center gap-1 bg-slate-900/90 p-1.5 rounded-2xl border border-white/15 backdrop-blur-xl text-xs">
+              <div className={`flex items-center gap-1 p-1.5 rounded-2xl border backdrop-blur-xl text-xs ${
+                theme === 'dark' ? 'bg-slate-900/90 border-white/15' : 'bg-white border-slate-200 shadow-md'
+              }`}>
                 <button
                   onClick={() => setGoogleMapType('k')}
                   className={`px-3 py-1.5 rounded-xl font-semibold transition-all cursor-pointer ${
                     googleMapType === 'k'
                       ? 'bg-orange-500 text-white shadow-xs'
-                      : 'text-slate-400 hover:text-white'
+                      : theme === 'dark'
+                      ? 'text-slate-400 hover:text-white'
+                      : 'text-slate-600 hover:text-slate-900'
                   }`}
                 >
                   Satellite
@@ -581,38 +629,48 @@ export const InteractiveMap: React.FC<InteractiveMapProps> = ({ currentLang, the
                   className={`px-3 py-1.5 rounded-xl font-semibold transition-all cursor-pointer ${
                     googleMapType === 'm'
                       ? 'bg-orange-500 text-white shadow-xs'
-                      : 'text-slate-400 hover:text-white'
+                      : theme === 'dark'
+                      ? 'text-slate-400 hover:text-white'
+                      : 'text-slate-600 hover:text-slate-900'
                   }`}
                 >
                   Roadmap
                 </button>
 
                 {/* Direct Zoom Controls */}
-                <div className="h-4 w-px bg-white/20 mx-1" />
+                <div className={`h-4 w-px mx-1 ${theme === 'dark' ? 'bg-white/20' : 'bg-slate-200'}`} />
                 <button
                   onClick={() => setZoomLevel((prev) => Math.min(prev + 1, 19))}
-                  className="p-1.5 rounded-lg text-slate-300 hover:text-white hover:bg-white/10 transition-colors cursor-pointer"
+                  className={`p-1.5 rounded-lg transition-colors cursor-pointer ${
+                    theme === 'dark' ? 'text-slate-300 hover:text-white hover:bg-white/10' : 'text-slate-600 hover:text-slate-900 hover:bg-slate-100'
+                  }`}
                   title="Zoom In"
                 >
                   <ZoomIn className="w-3.5 h-3.5" />
                 </button>
-                <span className="text-[10px] font-mono text-slate-400 px-1">{zoomLevel}z</span>
+                <span className={`text-[10px] font-mono px-1 ${theme === 'dark' ? 'text-slate-400' : 'text-slate-500'}`}>{zoomLevel}z</span>
                 <button
                   onClick={() => setZoomLevel((prev) => Math.max(prev - 1, 11))}
-                  className="p-1.5 rounded-lg text-slate-300 hover:text-white hover:bg-white/10 transition-colors cursor-pointer"
+                  className={`p-1.5 rounded-lg transition-colors cursor-pointer ${
+                    theme === 'dark' ? 'text-slate-300 hover:text-white hover:bg-white/10' : 'text-slate-600 hover:text-slate-900 hover:bg-slate-100'
+                  }`}
                   title="Zoom Out"
                 >
                   <ZoomOut className="w-3.5 h-3.5" />
                 </button>
               </div>
             ) : (
-              <div className="flex items-center gap-1 bg-slate-900/90 p-1.5 rounded-2xl border border-white/15 backdrop-blur-xl text-xs">
+              <div className={`flex items-center gap-1 p-1.5 rounded-2xl border backdrop-blur-xl text-xs ${
+                theme === 'dark' ? 'bg-slate-900/90 border-white/15' : 'bg-white border-slate-200 shadow-md'
+              }`}>
                 <button
                   onClick={() => setLeafletMapType('satellite')}
                   className={`px-3 py-1.5 rounded-xl font-semibold transition-all cursor-pointer ${
                     leafletMapType === 'satellite'
                       ? 'bg-emerald-600 text-white shadow-xs'
-                      : 'text-slate-400 hover:text-white'
+                      : theme === 'dark'
+                      ? 'text-slate-400 hover:text-white'
+                      : 'text-slate-600 hover:text-slate-900'
                   }`}
                 >
                   Esri Satellite
@@ -622,7 +680,9 @@ export const InteractiveMap: React.FC<InteractiveMapProps> = ({ currentLang, the
                   className={`px-3 py-1.5 rounded-xl font-semibold transition-all cursor-pointer ${
                     leafletMapType === 'standard'
                       ? 'bg-emerald-600 text-white shadow-xs'
-                      : 'text-slate-400 hover:text-white'
+                      : theme === 'dark'
+                      ? 'text-slate-400 hover:text-white'
+                      : 'text-slate-600 hover:text-slate-900'
                   }`}
                 >
                   Dark Grid
@@ -643,7 +703,9 @@ export const InteractiveMap: React.FC<InteractiveMapProps> = ({ currentLang, the
                 className={`relative px-3.5 py-1.5 rounded-xl text-xs font-semibold whitespace-nowrap transition-all cursor-pointer ${
                   isSelected
                     ? 'text-white'
-                    : 'bg-white/5 hover:bg-white/10 text-slate-400 hover:text-white border border-white/10'
+                    : theme === 'dark'
+                    ? 'bg-white/5 hover:bg-white/10 text-slate-400 hover:text-white border border-white/10'
+                    : 'bg-white hover:bg-slate-50 text-slate-600 hover:text-slate-900 border border-slate-200 shadow-xs'
                 }`}
               >
                 {isSelected && (
@@ -664,7 +726,9 @@ export const InteractiveMap: React.FC<InteractiveMapProps> = ({ currentLang, the
           {/* Left Column: Interactive Map Frame */}
           <motion.div
             layout
-            className="lg:col-span-8 rounded-3xl overflow-hidden shadow-2xl border border-white/15 bg-slate-900 relative"
+            className={`lg:col-span-8 rounded-3xl overflow-hidden shadow-2xl border relative ${
+              theme === 'dark' ? 'border-white/15 bg-slate-900' : 'border-slate-200 bg-white shadow-slate-200/50'
+            }`}
           >
             <AnimatePresence mode="wait">
               {mapProvider === 'google' ? (
@@ -759,30 +823,44 @@ export const InteractiveMap: React.FC<InteractiveMapProps> = ({ currentLang, the
                   animate={{ opacity: 1, y: 0, scale: 1 }}
                   exit={{ opacity: 0, y: -10, scale: 0.98 }}
                   transition={{ duration: 0.3, ease: 'easeOut' }}
-                  className="rounded-3xl bg-slate-900/90 backdrop-blur-2xl border border-white/15 shadow-2xl p-5 space-y-3 relative overflow-hidden"
+                  className={`rounded-3xl backdrop-blur-2xl border shadow-2xl p-5 space-y-3 relative overflow-hidden ${
+                    theme === 'dark'
+                      ? 'bg-slate-900/90 border-white/15'
+                      : 'bg-white border-slate-200 shadow-slate-200/50'
+                  }`}
                 >
                   <div className="flex items-center justify-between">
-                    <span className="px-2.5 py-0.5 rounded-full text-[10px] font-mono uppercase font-bold bg-emerald-500/10 text-emerald-400 border border-emerald-500/30">
+                    <span className="px-2.5 py-0.5 rounded-full text-[10px] font-mono uppercase font-bold bg-emerald-500/10 text-emerald-500 border border-emerald-500/30">
                       {selectedPin.category}
                     </span>
-                    <span className="text-[11px] font-mono text-slate-400">
+                    <span className={`text-[11px] font-mono ${theme === 'dark' ? 'text-slate-400' : 'text-slate-500'}`}>
                       {selectedPin.lat.toFixed(4)}° N, {selectedPin.lng.toFixed(4)}° E
                     </span>
                   </div>
 
                   <div>
-                    <h3 className="text-lg font-bold text-white leading-snug">
+                    <h3 className={`text-lg font-bold leading-snug ${
+                      theme === 'dark' ? 'text-white' : 'text-slate-900'
+                    }`}>
                       {selectedPin.name[currentLang]}
                     </h3>
                   </div>
 
-                  <p className="text-xs text-slate-300 leading-relaxed">
+                  <p className={`text-xs leading-relaxed ${
+                    theme === 'dark' ? 'text-slate-300' : 'text-slate-700'
+                  }`}>
                     {selectedPin.description[currentLang]}
                   </p>
 
                   {selectedPin.historicalNote && (
-                    <div className="p-3 bg-amber-500/10 rounded-xl border border-amber-500/30 text-xs text-amber-200">
-                      <div className="flex items-center gap-1.5 font-semibold text-amber-400 mb-0.5">
+                    <div className={`p-3 rounded-xl border text-xs ${
+                      theme === 'dark'
+                        ? 'bg-amber-500/10 border-amber-500/30 text-amber-200'
+                        : 'bg-amber-50 border-amber-200 text-amber-900'
+                    }`}>
+                      <div className={`flex items-center gap-1.5 font-semibold mb-0.5 ${
+                        theme === 'dark' ? 'text-amber-400' : 'text-amber-700'
+                      }`}>
                         <Sparkles className="w-3.5 h-3.5" />
                         <span>{currentLang === 'en' ? 'Centennial Archive' : 'ऐतिहासिक संदर्भ'}</span>
                       </div>
@@ -791,12 +869,14 @@ export const InteractiveMap: React.FC<InteractiveMapProps> = ({ currentLang, the
                   )}
 
                   {/* Action links */}
-                  <div className="pt-3 border-t border-white/10 flex items-center justify-between">
+                  <div className={`pt-3 border-t flex items-center justify-between ${
+                    theme === 'dark' ? 'border-white/10' : 'border-slate-200'
+                  }`}>
                     <a
                       href={getGoogleMapsDirectionsUrl(selectedPin.lat, selectedPin.lng)}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="text-xs font-semibold text-emerald-400 hover:text-emerald-300 flex items-center gap-1.5"
+                      className="text-xs font-semibold text-emerald-500 hover:text-emerald-600 flex items-center gap-1.5 transition-colors"
                     >
                       <Navigation className="w-3.5 h-3.5" />
                       <span>{currentLang === 'en' ? 'Navigate Here' : 'दिशा-निर्देश'}</span>
@@ -806,7 +886,11 @@ export const InteractiveMap: React.FC<InteractiveMapProps> = ({ currentLang, the
                       href={getGoogleMapsSearchUrl(selectedPin.lat, selectedPin.lng, selectedPin.name.en)}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="text-xs font-medium text-slate-400 hover:text-white flex items-center gap-1"
+                      className={`text-xs font-medium flex items-center gap-1 transition-colors ${
+                        theme === 'dark'
+                          ? 'text-slate-400 hover:text-white'
+                          : 'text-slate-600 hover:text-slate-900'
+                      }`}
                     >
                       <span>Google Place</span>
                       <ExternalLink className="w-3 h-3" />
@@ -817,12 +901,18 @@ export const InteractiveMap: React.FC<InteractiveMapProps> = ({ currentLang, the
             </AnimatePresence>
 
             {/* Landmark Fast-Select Pin List (Fluid Enter/Exit) */}
-            <div className="p-4 bg-slate-900/80 rounded-2xl border border-white/10 shadow-lg">
+            <div className={`p-4 rounded-2xl border shadow-lg ${
+              theme === 'dark'
+                ? 'bg-slate-900/80 border-white/10'
+                : 'bg-white border-slate-200 shadow-slate-200/50'
+            }`}>
               <div className="flex items-center justify-between mb-2 px-1">
-                <span className="text-[11px] font-bold text-slate-400 uppercase tracking-wider font-mono">
+                <span className={`text-[11px] font-bold uppercase tracking-wider font-mono ${
+                  theme === 'dark' ? 'text-slate-400' : 'text-slate-500'
+                }`}>
                   {currentLang === 'en' ? '// VILLAGE PINS LIST' : '// ग्राम पिन सूची'}
                 </span>
-                <span className="text-[10px] text-emerald-400 font-mono">
+                <span className="text-[10px] text-emerald-500 font-mono font-semibold">
                   {filteredLandmarks.length} Pins
                 </span>
               </div>
@@ -842,12 +932,14 @@ export const InteractiveMap: React.FC<InteractiveMapProps> = ({ currentLang, the
                         onClick={() => handleSelectPin(pin)}
                         className={`w-full text-left px-3 py-2 rounded-xl text-xs transition-all flex items-center justify-between cursor-pointer ${
                           isSelected
-                            ? 'bg-emerald-500/20 text-emerald-300 font-bold border border-emerald-500/40 shadow-xs'
-                            : 'hover:bg-white/5 text-slate-300'
+                            ? 'bg-emerald-500/20 text-emerald-600 dark:text-emerald-300 font-bold border border-emerald-500/40 shadow-xs'
+                            : theme === 'dark'
+                            ? 'hover:bg-white/5 text-slate-300'
+                            : 'hover:bg-slate-100 text-slate-700'
                         }`}
                       >
                         <span className="truncate pr-2">{pin.name[currentLang]}</span>
-                        <ChevronRight className={`w-3.5 h-3.5 shrink-0 ${isSelected ? 'text-emerald-400' : 'text-slate-600'}`} />
+                        <ChevronRight className={`w-3.5 h-3.5 shrink-0 ${isSelected ? 'text-emerald-500' : theme === 'dark' ? 'text-slate-600' : 'text-slate-400'}`} />
                       </motion.button>
                     );
                   })}

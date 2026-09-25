@@ -65,7 +65,7 @@ export const VillageLogo: React.FC<VillageLogoProps> = ({
       {/* Outer Hexagonal Shield Ring */}
       <polygon
         points="50,4 92,26 92,74 50,96 8,74 8,26"
-        fill="#090D16"
+        fill={theme === 'dark' ? '#090D16' : '#FFFFFF'}
         stroke="url(#goldGrad)"
         strokeWidth="2.5"
       />
@@ -190,7 +190,7 @@ export const VillageLogo: React.FC<VillageLogoProps> = ({
             PIN 335062
           </span>
         </div>
-        <p className={`font-mono text-slate-400 ${dimensions.sub} leading-none mt-0.5`}>
+        <p className={`font-mono ${theme === 'dark' ? 'text-slate-400' : 'text-slate-500'} ${dimensions.sub} leading-none mt-0.5`}>
           Utrada · Rajasthan · Est. 1926
         </p>
       </div>

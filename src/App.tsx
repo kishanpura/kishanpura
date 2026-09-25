@@ -3,48 +3,62 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import React, { useState, useEffect } from 'react';
-import { ScrollProgressBar } from './components/ScrollProgressBar';
-import { LiveTicker } from './components/LiveTicker';
-import { Navbar } from './components/Navbar';
-import { HeroSection } from './components/HeroSection';
-import { InteractiveMap } from './components/InteractiveMap';
-import { HeritageTimeline } from './components/HeritageTimeline';
-import { AgrarianHeartland } from './components/AgrarianHeartland';
-import { CultureTraditions } from './components/CultureTraditions';
-import { PublicDirectory } from './components/PublicDirectory';
-import { PhotoGallery } from './components/PhotoGallery';
-import { VillageFAQ } from './components/VillageFAQ';
-import { SocialHub } from './components/SocialHub';
-import { VisitorGuide } from './components/VisitorGuide';
-import { Footer } from './components/Footer';
+import React, { useState, useEffect } from "react";
+import { ScrollProgressBar } from "./components/ScrollProgressBar";
+import { LiveTicker } from "./components/LiveTicker";
+import { Navbar } from "./components/Navbar";
+import { HeroSection } from "./components/HeroSection";
+import { InteractiveMap } from "./components/InteractiveMap";
+import { HeritageTimeline } from "./components/HeritageTimeline";
+import { AgrarianHeartland } from "./components/AgrarianHeartland";
+import { CultureTraditions } from "./components/CultureTraditions";
+import { PublicDirectory } from "./components/PublicDirectory";
+import { PhotoGallery } from "./components/PhotoGallery";
+import { VillageFAQ } from "./components/VillageFAQ";
+import { SocialHub } from "./components/SocialHub";
+import { VisitorGuide } from "./components/VisitorGuide";
+import { Footer } from "./components/Footer";
 
 export default function App() {
-  const [currentLang, setCurrentLang] = useState<'en' | 'hi'>('en');
-  const [activeSection, setActiveSection] = useState<string>('overview');
-  const [theme, setTheme] = useState<'dark' | 'light'>('dark');
+  const [currentLang, setCurrentLang] = useState<"en" | "hi">("en");
+  const [activeSection, setActiveSection] = useState<string>("overview");
+  const [theme, setTheme] = useState<"dark" | "light">("light");
 
   const toggleLanguage = () => {
-    setCurrentLang((prev) => (prev === 'en' ? 'hi' : 'en'));
+    setCurrentLang((prev) => (prev === "en" ? "hi" : "en"));
   };
 
   const toggleTheme = () => {
-    setTheme((prev) => (prev === 'dark' ? 'light' : 'dark'));
+    setTheme((prev) => (prev === "dark" ? "light" : "dark"));
   };
+
+  useEffect(() => {
+    if (theme === "dark") {
+      document.documentElement.classList.add("dark");
+      document.documentElement.classList.remove("light");
+      document.body.className =
+        "bg-[#090D16] text-[#F1F5F9] antialiased selection:bg-[#10B981]/30 selection:text-[#34D399]";
+    } else {
+      document.documentElement.classList.add("light");
+      document.documentElement.classList.remove("dark");
+      document.body.className =
+        "bg-[#F8FAFC] text-[#0F172A] antialiased selection:bg-[#10B981]/20 selection:text-emerald-700";
+    }
+  }, [theme]);
 
   useEffect(() => {
     const handleScroll = () => {
       const sections = [
-        'overview',
-        'map',
-        'heritage',
-        'agriculture',
-        'culture',
-        'directory',
-        'gallery',
-        'faq',
-        'social',
-        'visitor',
+        "overview",
+        "map",
+        "heritage",
+        "agriculture",
+        "culture",
+        "directory",
+        "gallery",
+        "faq",
+        "social",
+        "visitor",
       ];
       const scrollPosition = window.scrollY + 200;
 
@@ -57,24 +71,24 @@ export default function App() {
       }
     };
 
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    return () => window.removeEventListener('scroll', handleScroll);
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   const scrollToSection = (id: string) => {
     const el = document.getElementById(id);
     if (el) {
       const top = el.getBoundingClientRect().top + window.scrollY - 84;
-      window.scrollTo({ top, behavior: 'smooth' });
+      window.scrollTo({ top, behavior: "smooth" });
     }
   };
 
   return (
     <div
       className={`min-h-screen transition-colors duration-500 flex flex-col font-sans relative ${
-        theme === 'dark'
-          ? 'bg-[#090D16] text-[#F1F5F9] bg-modern-grid selection:bg-emerald-500/30 selection:text-emerald-300'
-          : 'bg-[#F8FAFC] text-[#0F172A] bg-modern-light-grid selection:bg-emerald-500/20 selection:text-emerald-700'
+        theme === "dark"
+          ? "bg-[#090D16] text-[#F1F5F9] bg-modern-grid selection:bg-emerald-500/30 selection:text-emerald-300"
+          : "bg-[#F8FAFC] text-[#0F172A] bg-modern-light-grid selection:bg-emerald-500/20 selection:text-emerald-700"
       }`}
     >
       {/* Scroll Progress Bar at the absolute top */}
@@ -99,8 +113,8 @@ export default function App() {
         {/* Hero Section & Identity */}
         <HeroSection
           currentLang={currentLang}
-          onExploreMap={() => scrollToSection('map')}
-          onExploreHeritage={() => scrollToSection('heritage')}
+          onExploreMap={() => scrollToSection("map")}
+          onExploreHeritage={() => scrollToSection("heritage")}
           theme={theme}
         />
 

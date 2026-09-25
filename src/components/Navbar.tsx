@@ -87,7 +87,9 @@ export const Navbar: React.FC<NavbarProps> = ({
           </motion.button>
 
           {/* Desktop Navigation Links with animated active pill */}
-          <nav className="hidden xl:flex items-center gap-1 bg-white/5 dark:bg-white/5 p-1 rounded-xl border border-white/10 dark:border-white/10 backdrop-blur-md">
+          <nav className={`hidden xl:flex items-center gap-1 p-1 rounded-xl border backdrop-blur-md ${
+            theme === 'dark' ? 'bg-white/5 border-white/10' : 'bg-slate-100/90 border-slate-200 shadow-xs'
+          }`}>
             {navLinks.map((link) => {
               const isActive = activeSection === link.id;
               return (
@@ -99,7 +101,7 @@ export const Navbar: React.FC<NavbarProps> = ({
                       ? 'text-white'
                       : theme === 'dark'
                       ? 'text-slate-300 hover:text-white'
-                      : 'text-slate-600 hover:text-slate-900'
+                      : 'text-slate-700 hover:text-slate-950'
                   }`}
                 >
                   {isActive && (
@@ -123,7 +125,11 @@ export const Navbar: React.FC<NavbarProps> = ({
               whileTap={{ scale: 0.95 }}
               onClick={onToggleTheme}
               title={theme === 'dark' ? 'Switch to Modern Light Mode' : 'Switch to Cyber Obsidian Dark Mode'}
-              className="p-2 rounded-xl text-xs font-medium bg-white/10 dark:bg-white/5 hover:bg-white/15 text-slate-200 border border-white/10 transition-colors cursor-pointer"
+              className={`p-2 rounded-xl text-xs font-medium border transition-colors cursor-pointer ${
+                theme === 'dark'
+                  ? 'bg-white/10 hover:bg-white/15 text-slate-200 border-white/10'
+                  : 'bg-slate-100 hover:bg-slate-200 text-slate-700 border-slate-200 shadow-xs'
+              }`}
             >
               {theme === 'dark' ? (
                 <Sun className="w-4 h-4 text-amber-400 hover:rotate-90 transition-transform duration-300" />
@@ -140,38 +146,40 @@ export const Navbar: React.FC<NavbarProps> = ({
               title={isAudioPlaying ? 'Mute ambient rural sound' : 'Play peaceful rural soundscape'}
               className={`px-3 py-1.5 rounded-xl text-xs font-medium flex items-center gap-2 transition-all cursor-pointer border ${
                 isAudioPlaying
-                  ? 'bg-emerald-500/20 text-emerald-300 border-emerald-500/40 shadow-[0_0_15px_rgba(16,185,129,0.25)]'
-                  : 'bg-white/5 hover:bg-white/10 text-slate-300 border-white/10'
+                  ? 'bg-emerald-500/20 text-emerald-400 border-emerald-500/40 shadow-[0_0_15px_rgba(16,185,129,0.25)]'
+                  : theme === 'dark'
+                  ? 'bg-white/5 hover:bg-white/10 text-slate-300 border-white/10'
+                  : 'bg-slate-100 hover:bg-slate-200 text-slate-700 border-slate-200 shadow-xs'
               }`}
             >
               {isAudioPlaying ? (
                 <>
-                  <Volume2 className="w-4 h-4 text-emerald-400" />
+                  <Volume2 className="w-4 h-4 text-emerald-500 dark:text-emerald-400" />
                   <span className="flex items-center gap-0.5 h-3">
                     <motion.span
                       animate={{ height: ['4px', '14px', '6px', '16px', '4px'] }}
                       transition={{ repeat: Infinity, duration: 0.9, ease: 'easeInOut' }}
-                      className="w-0.5 bg-emerald-400 rounded-full inline-block"
+                      className="w-0.5 bg-emerald-500 dark:bg-emerald-400 rounded-full inline-block"
                     />
                     <motion.span
                       animate={{ height: ['12px', '4px', '16px', '8px', '12px'] }}
                       transition={{ repeat: Infinity, duration: 0.7, ease: 'easeInOut' }}
-                      className="w-0.5 bg-cyan-400 rounded-full inline-block"
+                      className="w-0.5 bg-cyan-500 dark:bg-cyan-400 rounded-full inline-block"
                     />
                     <motion.span
                       animate={{ height: ['6px', '16px', '8px', '4px', '6px'] }}
                       transition={{ repeat: Infinity, duration: 0.85, ease: 'easeInOut' }}
-                      className="w-0.5 bg-emerald-400 rounded-full inline-block"
+                      className="w-0.5 bg-emerald-500 dark:bg-emerald-400 rounded-full inline-block"
                     />
                   </span>
-                  <span className="hidden md:inline text-[11px] font-semibold text-emerald-300">
+                  <span className="hidden md:inline text-[11px] font-semibold text-emerald-600 dark:text-emerald-300">
                     Audio Live
                   </span>
                 </>
               ) : (
                 <>
-                  <VolumeX className="w-4 h-4 text-slate-400" />
-                  <span className="hidden md:inline text-[11px]">Audio</span>
+                  <VolumeX className={`w-4 h-4 ${theme === 'dark' ? 'text-slate-400' : 'text-slate-500'}`} />
+                  <span className={`hidden md:inline text-[11px] ${theme === 'dark' ? 'text-slate-300' : 'text-slate-700'}`}>Audio</span>
                 </>
               )}
             </motion.button>
@@ -181,9 +189,13 @@ export const Navbar: React.FC<NavbarProps> = ({
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               onClick={onToggleLang}
-              className="px-2.5 py-1.5 rounded-xl text-xs font-semibold bg-white/5 hover:bg-white/10 text-slate-200 border border-white/10 flex items-center gap-1.5 transition-colors cursor-pointer"
+              className={`px-2.5 py-1.5 rounded-xl text-xs font-semibold border flex items-center gap-1.5 transition-colors cursor-pointer ${
+                theme === 'dark'
+                  ? 'bg-white/5 hover:bg-white/10 text-slate-200 border-white/10'
+                  : 'bg-slate-100 hover:bg-slate-200 text-slate-700 border-slate-200 shadow-xs'
+              }`}
             >
-              <Globe className="w-3.5 h-3.5 text-cyan-400" />
+              <Globe className="w-3.5 h-3.5 text-cyan-500 dark:text-cyan-400" />
               <span>{currentLang === 'en' ? 'हिंदी' : 'EN'}</span>
             </motion.button>
 
@@ -193,7 +205,11 @@ export const Navbar: React.FC<NavbarProps> = ({
               whileTap={{ scale: 0.95 }}
               onClick={() => scrollTo('social')}
               title={currentLang === 'en' ? 'Share Village Portfolio on Social Networks' : 'सोशल नेटवर्क पर शेयर करें'}
-              className="p-2 rounded-xl text-xs font-semibold bg-white/10 hover:bg-white/15 text-cyan-300 border border-cyan-500/30 flex items-center gap-1.5 transition-all cursor-pointer shadow-xs"
+              className={`p-2 rounded-xl text-xs font-semibold border flex items-center gap-1.5 transition-all cursor-pointer shadow-xs ${
+                theme === 'dark'
+                  ? 'bg-white/10 hover:bg-white/15 text-cyan-300 border-cyan-500/30'
+                  : 'bg-cyan-50 hover:bg-cyan-100 text-cyan-700 border-cyan-200'
+              }`}
             >
               <Share2 className="w-3.5 h-3.5" />
               <span className="hidden lg:inline text-[11px] font-mono">Share</span>
@@ -216,7 +232,11 @@ export const Navbar: React.FC<NavbarProps> = ({
             {/* Mobile Menu Button */}
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="xl:hidden p-2 rounded-xl bg-white/10 text-white hover:bg-white/20 cursor-pointer"
+              className={`xl:hidden p-2 rounded-xl cursor-pointer transition-colors ${
+                theme === 'dark'
+                  ? 'bg-white/10 text-white hover:bg-white/20'
+                  : 'bg-slate-100 text-slate-800 hover:bg-slate-200 border border-slate-200'
+              }`}
               aria-label="Toggle navigation menu"
             >
               {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
@@ -239,12 +259,18 @@ export const Navbar: React.FC<NavbarProps> = ({
                 : 'bg-white/95 border-slate-200 backdrop-blur-xl'
             }`}
           >
-            <div className="grid grid-cols-2 gap-2 pt-2 pb-3 border-b border-white/10">
+            <div className={`grid grid-cols-2 gap-2 pt-2 pb-3 border-b ${
+              theme === 'dark' ? 'border-white/10' : 'border-slate-200'
+            }`}>
               {navLinks.map((link) => (
                 <button
                   key={link.id}
                   onClick={() => scrollTo(link.id)}
-                  className="text-left px-3 py-2 text-sm font-medium rounded-lg hover:bg-white/10 text-slate-200 cursor-pointer"
+                  className={`text-left px-3 py-2 text-sm font-medium rounded-lg cursor-pointer transition-colors ${
+                    theme === 'dark'
+                      ? 'hover:bg-white/10 text-slate-200'
+                      : 'hover:bg-slate-100 text-slate-800'
+                  }`}
                 >
                   {link.label}
                 </button>
@@ -256,13 +282,13 @@ export const Navbar: React.FC<NavbarProps> = ({
                 href={VILLAGE_INFO.location.mapsUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center gap-2 text-sm font-semibold text-orange-400 hover:underline"
+                className="flex items-center gap-2 text-sm font-semibold text-orange-500 hover:text-orange-600 hover:underline"
               >
                 <MapPin className="w-4 h-4" />
                 <span>{currentLang === 'en' ? 'Open in Google Maps' : 'गूगल मैप्स पर देखें'}</span>
                 <ExternalLink className="w-3.5 h-3.5" />
               </a>
-              <span className="text-xs text-slate-400 font-mono">PIN 335062</span>
+              <span className={`text-xs font-mono ${theme === 'dark' ? 'text-slate-400' : 'text-slate-500'}`}>PIN 335062</span>
             </div>
           </motion.div>
         )}
