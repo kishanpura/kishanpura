@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from 'react';
-import { motion } from 'motion/react';
+import React, { useEffect, useState } from "react";
+import { motion } from "motion/react";
 import {
   MapPin,
   Navigation,
@@ -12,21 +12,21 @@ import {
   Droplet,
   CloudSun,
   ShieldCheck,
-} from 'lucide-react';
-import { VILLAGE_INFO, VILLAGE_STATS } from '../data/villageData';
-import { VillageLogo } from './VillageLogo';
+} from "lucide-react";
+import { VILLAGE_INFO, VILLAGE_STATS } from "../data/villageData";
+import { VillageLogo } from "./VillageLogo";
 
 interface HeroSectionProps {
-  currentLang: 'en' | 'hi';
+  currentLang: "en" | "hi";
   onExploreMap: () => void;
   onExploreHeritage: () => void;
-  theme: 'dark' | 'light';
+  theme: "dark" | "light";
 }
 
 const AnimatedCounter: React.FC<{ value: string }> = ({ value }) => {
   const numericMatch = value.match(/\d+/);
   const targetNum = numericMatch ? parseInt(numericMatch[0], 10) : null;
-  const suffix = value.replace(/\d+/, '');
+  const suffix = value.replace(/\d+/, "");
   const [count, setCount] = useState(0);
 
   useEffect(() => {
@@ -73,7 +73,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: false, amount: 0.1 }}
       transition={{ duration: 0.6 }}
-      className="relative pt-24 sm:pt-28 pb-16 overflow-hidden"
+      className="relative pt-2 md:pt-4 pb-16 overflow-hidden"
     >
       {/* Dynamic Animated Ambient Glow Orbs */}
       <motion.div
@@ -82,8 +82,8 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
           opacity: [0.25, 0.45, 0.25],
           x: [0, 40, 0],
         }}
-        transition={{ duration: 10, repeat: Infinity, ease: 'easeInOut' }}
-        className="absolute top-10 right-10 -mr-20 -mt-20 w-[480px] h-[480px] rounded-full bg-emerald-500/20 blur-[120px] pointer-events-none"
+        transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
+        className="absolute top-10 right-10 -mr-20 -mt-20 w-120 h-120 rounded-full bg-emerald-500/20 blur-[120px] pointer-events-none"
       />
       <motion.div
         animate={{
@@ -91,16 +91,26 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
           opacity: [0.2, 0.35, 0.2],
           y: [0, -35, 0],
         }}
-        transition={{ duration: 14, repeat: Infinity, ease: 'easeInOut', delay: 1 }}
-        className="absolute top-1/2 left-0 -ml-24 w-[420px] h-[420px] rounded-full bg-orange-500/20 blur-[130px] pointer-events-none"
+        transition={{
+          duration: 14,
+          repeat: Infinity,
+          ease: "easeInOut",
+          delay: 1,
+        }}
+        className="absolute top-1/2 left-0 -ml-24 w-105 h-105 rounded-full bg-orange-500/20 blur-[130px] pointer-events-none"
       />
       <motion.div
         animate={{
           scale: [1, 1.2, 1],
           opacity: [0.15, 0.3, 0.15],
         }}
-        transition={{ duration: 12, repeat: Infinity, ease: 'easeInOut', delay: 3 }}
-        className="absolute bottom-0 right-1/4 w-[360px] h-[360px] rounded-full bg-cyan-500/20 blur-[110px] pointer-events-none"
+        transition={{
+          duration: 12,
+          repeat: Infinity,
+          ease: "easeInOut",
+          delay: 3,
+        }}
+        className="absolute bottom-0 right-1/4 w-90 h-90 rounded-full bg-cyan-500/20 blur-[110px] pointer-events-none"
       />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
@@ -119,16 +129,27 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
             <span className="font-semibold">LIVE PORTFOLIO</span>
           </div>
 
-          <div className={`flex items-center gap-1.5 px-3 py-1 rounded-full backdrop-blur-md border ${
-            theme === 'dark' ? 'bg-white/5 border-white/10 text-slate-300' : 'bg-white/90 border-slate-200 text-slate-700 shadow-xs'
-          }`}>
-            <Compass className="w-3.5 h-3.5 text-cyan-500 animate-spin" style={{ animationDuration: '12s' }} />
+          <div
+            className={`flex items-center gap-1.5 px-3 py-1 rounded-full backdrop-blur-md border ${
+              theme === "dark"
+                ? "bg-white/5 border-white/10 text-slate-300"
+                : "bg-white/90 border-slate-200 text-slate-700 shadow-xs"
+            }`}
+          >
+            <Compass
+              className="w-3.5 h-3.5 text-cyan-500 animate-spin"
+              style={{ animationDuration: "12s" }}
+            />
             <span>29.8885° N, 74.2898° E</span>
           </div>
 
-          <div className={`flex items-center gap-1.5 px-3 py-1 rounded-full backdrop-blur-md border ${
-            theme === 'dark' ? 'bg-white/5 border-white/10 text-slate-300' : 'bg-white/90 border-slate-200 text-slate-700 shadow-xs'
-          }`}>
+          <div
+            className={`flex items-center gap-1.5 px-3 py-1 rounded-full backdrop-blur-md border ${
+              theme === "dark"
+                ? "bg-white/5 border-white/10 text-slate-300"
+                : "bg-white/90 border-slate-200 text-slate-700 shadow-xs"
+            }`}
+          >
             <CloudSun className="w-3.5 h-3.5 text-amber-500" />
             <span>Sadulshahar · Rajasthan 335062</span>
           </div>
@@ -149,39 +170,49 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
                 <div className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-orange-400 bg-orange-500/10 px-3.5 py-1 rounded-full border border-orange-500/20 font-mono">
                   <Award className="w-3.5 h-3.5" />
                   <span>
-                    {currentLang === 'en'
-                      ? 'Official Village Crest & Cultural Archive'
-                      : 'आधिकारिक ग्राम प्रतीक व सांस्कृतिक अभिलेखागार'}
+                    {currentLang === "en"
+                      ? "Official Village Crest & Cultural Archive"
+                      : "आधिकारिक ग्राम प्रतीक व सांस्कृतिक अभिलेखागार"}
                   </span>
                 </div>
               </div>
 
               <h1 className="text-4xl sm:text-6xl lg:text-7xl font-extrabold tracking-tight leading-[1.08]">
-                <span className={`font-display-modern block ${theme === 'dark' ? 'text-white' : 'text-slate-950'}`}>
+                <span
+                  className={`font-display-modern block ${theme === "dark" ? "text-white" : "text-slate-950"}`}
+                >
                   Kishanpura
                 </span>
                 <span className="text-gradient-emerald font-display-modern block mt-1">
-                  {currentLang === 'en' ? 'Utrada · Rajasthan' : 'किशनपुरा (उतरादा)'}
+                  {currentLang === "en"
+                    ? "Utrada · Rajasthan"
+                    : "किशनपुरा (उतरादा)"}
                 </span>
-                <span className={`text-xl sm:text-2xl font-hindi-display font-normal block mt-1 ${theme === 'dark' ? 'text-slate-400' : 'text-slate-600'}`}>
-                  {currentLang === 'en' ? 'किशनपुरा · ਕਿਸ਼ਨਪੁਰਾ · PIN 335062' : 'Sadulshahar Tehsil · 335062'}
+                <span
+                  className={`text-xl sm:text-2xl font-hindi-display font-normal block mt-1 ${theme === "dark" ? "text-slate-400" : "text-slate-600"}`}
+                >
+                  {currentLang === "en"
+                    ? "किशनपुरा · ਕਿਸ਼ਨਪੁਰਾ · PIN 335062"
+                    : "Sadulshahar Tehsil · 335062"}
                 </span>
               </h1>
             </div>
 
-            <p className={`text-base sm:text-lg leading-relaxed max-w-2xl font-normal ${theme === 'dark' ? 'text-slate-300' : 'text-slate-700'}`}>
-              {currentLang === 'en'
-                ? 'Welcome to the digital gateway of Kishanpura (Utrada). A vibrant century-old rural sanctuary in northern Rajasthan, celebrated for its sweet Kinnow citrus orchards, pure Himalayan canal distributaries, and the historic GSSS institution educating generations since 1926.'
-                : 'किशनपुरा (उतरादा) के डिजिटल द्वार पर आपका स्वागत है। उत्तर राजस्थान की उपजाऊ नहरी गोद में बसा यह गाँव अपनी मिठास भरे किन्नू के बागों, लहलहाते गेहूँ के खेतों, 1926 से ज्ञान बांटते ऐतिहासिक विद्यालय और असीम ग्रामीण आतिथ्य के लिए विख्यात है।'}
+            <p
+              className={`text-base sm:text-lg leading-relaxed max-w-2xl font-normal ${theme === "dark" ? "text-slate-300" : "text-slate-700"}`}
+            >
+              {currentLang === "en"
+                ? "Welcome to the digital gateway of Kishanpura (Utrada). A vibrant century-old rural sanctuary in northern Rajasthan, celebrated for its sweet Kinnow citrus orchards, pure Himalayan canal distributaries, and the historic GSSS institution educating generations since 1926."
+                : "किशनपुरा (उतरादा) के डिजिटल द्वार पर आपका स्वागत है। उत्तर राजस्थान की उपजाऊ नहरी गोद में बसा यह गाँव अपनी मिठास भरे किन्नू के बागों, लहलहाते गेहूँ के खेतों, 1926 से ज्ञान बांटते ऐतिहासिक विद्यालय और असीम ग्रामीण आतिथ्य के लिए विख्यात है।"}
             </p>
 
             {/* Modern Glass Info Card with Neon Accent */}
             <motion.div
-              whileHover={{ y: -3, borderColor: 'rgba(16, 185, 129, 0.5)' }}
+              whileHover={{ y: -3, borderColor: "rgba(16, 185, 129, 0.5)" }}
               className={`p-5 rounded-2xl border backdrop-blur-xl shadow-lg relative overflow-hidden ${
-                theme === 'dark'
-                  ? 'bg-gradient-to-r from-emerald-950/40 via-slate-900/60 to-slate-900/40 border-emerald-500/30'
-                  : 'bg-gradient-to-r from-emerald-50/90 via-teal-50/80 to-emerald-50/90 border-emerald-200 text-slate-900'
+                theme === "dark"
+                  ? "bg-linear-to-r from-emerald-950/40 via-slate-900/60 to-slate-900/40 border-emerald-500/30"
+                  : "bg-linear-to-r from-emerald-50/90 via-teal-50/80 to-emerald-50/90 border-emerald-200 text-slate-900"
               }`}
             >
               <div className="flex items-start gap-4">
@@ -189,18 +220,22 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
                   <Sun className="w-5 h-5" />
                 </div>
                 <div>
-                  <h2 className={`text-sm font-bold flex items-center gap-2 ${theme === 'dark' ? 'text-white' : 'text-slate-900'}`}>
+                  <h2
+                    className={`text-sm font-bold flex items-center gap-2 ${theme === "dark" ? "text-white" : "text-slate-900"}`}
+                  >
                     <span>
-                      {currentLang === 'en'
-                        ? 'The Granary of Rajasthan & Citrus Capital'
-                        : 'राजस्थान का हरित अन्न भंडार व किन्नू की राजधानी'}
+                      {currentLang === "en"
+                        ? "The Granary of Rajasthan & Citrus Capital"
+                        : "राजस्थान का हरित अन्न भंडार व किन्नू की राजधानी"}
                     </span>
                     <Sparkles className="w-3.5 h-3.5 text-amber-500" />
                   </h2>
-                  <p className={`text-xs mt-1 leading-normal ${theme === 'dark' ? 'text-slate-300' : 'text-slate-700'}`}>
-                    {currentLang === 'en'
+                  <p
+                    className={`text-xs mt-1 leading-normal ${theme === "dark" ? "text-slate-300" : "text-slate-700"}`}
+                  >
+                    {currentLang === "en"
                       ? 'Equitable canal "Vara-Bandi" water turns, century-old banyan chaupal councils, and generational farmers cultivating 1,450+ hectares of fertile soils.'
-                      : 'अनुशासित नहरी वारा-बंदी, बरगद की चौपाल पर विचार और पीढ़ियों की अटूट मेहनत से रचा गया एक आदर्श भारतीय गाँव।'}
+                      : "अनुशासित नहरी वारा-बंदी, बरगद की चौपाल पर विचार और पीढ़ियों की अटूट मेहनत से रचा गया एक आदर्श भारतीय गाँव।"}
                   </p>
                 </div>
               </div>
@@ -209,27 +244,41 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
             {/* Glowing Action Buttons */}
             <div className="flex flex-wrap items-center gap-3 pt-2">
               <motion.button
-                whileHover={{ scale: 1.04, boxShadow: '0 0 25px rgba(16,185,129,0.5)' }}
+                whileHover={{
+                  scale: 1.04,
+                  boxShadow: "0 0 25px rgba(16,185,129,0.5)",
+                }}
                 whileTap={{ scale: 0.96 }}
                 onClick={onExploreMap}
-                className="px-6 py-3.5 rounded-xl bg-gradient-to-r from-emerald-500 to-teal-600 hover:from-emerald-400 hover:to-teal-500 text-white font-semibold text-sm transition-all shadow-lg flex items-center gap-2 cursor-pointer border border-emerald-400/30"
+                className="px-6 py-3.5 rounded-xl bg-linear-to-r from-emerald-500 to-teal-600 hover:from-emerald-400 hover:to-teal-500 text-white font-semibold text-sm transition-all shadow-lg flex items-center gap-2 cursor-pointer border border-emerald-400/30"
               >
                 <Navigation className="w-4 h-4 animate-pulse" />
-                <span>{currentLang === 'en' ? 'Explore 3D Map & POIs' : 'ग्राम मानचित्र देखें'}</span>
+                <span>
+                  {currentLang === "en"
+                    ? "Explore 3D Map & POIs"
+                    : "ग्राम मानचित्र देखें"}
+                </span>
               </motion.button>
 
               <motion.button
-                whileHover={{ scale: 1.04, borderColor: 'rgba(255,255,255,0.4)' }}
+                whileHover={{
+                  scale: 1.04,
+                  borderColor: "rgba(255,255,255,0.4)",
+                }}
                 whileTap={{ scale: 0.96 }}
                 onClick={onExploreHeritage}
                 className={`px-5 py-3.5 rounded-xl font-semibold text-sm transition-all border backdrop-blur-md shadow-xs flex items-center gap-2 cursor-pointer ${
-                  theme === 'dark'
-                    ? 'bg-white/10 hover:bg-white/15 text-white border-white/20'
-                    : 'bg-white hover:bg-slate-50 text-slate-800 border-slate-300 shadow-sm'
+                  theme === "dark"
+                    ? "bg-white/10 hover:bg-white/15 text-white border-white/20"
+                    : "bg-white hover:bg-slate-50 text-slate-800 border-slate-300 shadow-sm"
                 }`}
               >
                 <Calendar className="w-4 h-4 text-orange-400" />
-                <span>{currentLang === 'en' ? 'Centennial Story (1926–2026)' : '100 वर्ष का इतिहास'}</span>
+                <span>
+                  {currentLang === "en"
+                    ? "Centennial Story (1926–2026)"
+                    : "100 वर्ष का इतिहास"}
+                </span>
               </motion.button>
 
               <motion.a
@@ -253,14 +302,18 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
             transition={{ duration: 0.9, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
             className="lg:col-span-5"
           >
-            <div className={`relative rounded-3xl overflow-hidden shadow-2xl border backdrop-blur-2xl group ${
-              theme === 'dark' ? 'bg-slate-900/80 border-white/15' : 'bg-white border-slate-200'
-            }`}>
+            <div
+              className={`relative rounded-3xl overflow-hidden shadow-2xl border backdrop-blur-2xl group ${
+                theme === "dark"
+                  ? "bg-slate-900/80 border-white/15"
+                  : "bg-white border-slate-200"
+              }`}
+            >
               {/* Image Frame with Zoom Effect */}
-              <div className="aspect-[4/3] w-full overflow-hidden bg-slate-800 relative">
+              <div className="aspect-4/3 w-full overflow-hidden bg-slate-800 relative">
                 <motion.img
                   whileHover={{ scale: 1.08 }}
-                  transition={{ duration: 0.8, ease: 'easeOut' }}
+                  transition={{ duration: 0.8, ease: "easeOut" }}
                   src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=1200&q=80"
                   alt="Kishanpura Farmlands and Canal Waterway"
                   className="w-full h-full object-cover"
@@ -278,36 +331,54 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
               </div>
 
               {/* Caption Overlay */}
-              <div className={`p-5 sm:p-6 border-t space-y-3 ${
-                theme === 'dark' ? 'bg-slate-900/90 border-white/10' : 'bg-white border-slate-200'
-              }`}>
-                <div className={`flex items-center justify-between text-xs font-mono ${theme === 'dark' ? 'text-slate-400' : 'text-slate-500'}`}>
+              <div
+                className={`p-5 sm:p-6 border-t space-y-3 ${
+                  theme === "dark"
+                    ? "bg-slate-900/90 border-white/10"
+                    : "bg-white border-slate-200"
+                }`}
+              >
+                <div
+                  className={`flex items-center justify-between text-xs font-mono ${theme === "dark" ? "text-slate-400" : "text-slate-500"}`}
+                >
                   <span>HIMALAYAN WATERWAYS</span>
                   <span>SADULSHAHAR BELT</span>
                 </div>
-                <h3 className={`text-lg font-bold leading-snug ${theme === 'dark' ? 'text-white' : 'text-slate-900'}`}>
-                  {currentLang === 'en'
-                    ? 'Emerald Canals Transforming Northern Rajasthan'
-                    : 'हिमालयी जलधारा से सींची गई पावन धरा'}
+                <h3
+                  className={`text-lg font-bold leading-snug ${theme === "dark" ? "text-white" : "text-slate-900"}`}
+                >
+                  {currentLang === "en"
+                    ? "Emerald Canals Transforming Northern Rajasthan"
+                    : "हिमालयी जलधारा से सींची गई पावन धरा"}
                 </h3>
-                <p className={`text-xs leading-relaxed ${theme === 'dark' ? 'text-slate-300' : 'text-slate-700'}`}>
-                  {currentLang === 'en'
-                    ? 'A flourishing agrarian ecosystem of Kinnow mandarins, mustard blossoms, and golden wheat fed by historic canal feeders.'
-                    : '1,450 हेक्टेयर से अधिक विस्तृत क्षेत्र में फैले किन्नू के बाग और सरसों व गेहूँ की खेती।'}
+                <p
+                  className={`text-xs leading-relaxed ${theme === "dark" ? "text-slate-300" : "text-slate-700"}`}
+                >
+                  {currentLang === "en"
+                    ? "A flourishing agrarian ecosystem of Kinnow mandarins, mustard blossoms, and golden wheat fed by historic canal feeders."
+                    : "1,450 हेक्टेयर से अधिक विस्तृत क्षेत्र में फैले किन्नू के बाग और सरसों व गेहूँ की खेती।"}
                 </p>
 
-                <div className={`pt-3 border-t flex items-center justify-between text-xs ${
-                  theme === 'dark' ? 'border-white/10' : 'border-slate-100'
-                }`}>
+                <div
+                  className={`pt-3 border-t flex items-center justify-between text-xs ${
+                    theme === "dark" ? "border-white/10" : "border-slate-100"
+                  }`}
+                >
                   <span className="text-emerald-500 flex items-center gap-1.5 font-semibold">
                     <span className="w-2 h-2 rounded-full bg-emerald-500 animate-ping" />
-                    {currentLang === 'en' ? 'Active Season: Winter Crop' : 'स्थिति: सक्रिय कृषि काल'}
+                    {currentLang === "en"
+                      ? "Active Season: Winter Crop"
+                      : "स्थिति: सक्रिय कृषि काल"}
                   </span>
                   <button
                     onClick={onExploreMap}
                     className="text-orange-500 hover:text-orange-600 flex items-center gap-1 font-semibold cursor-pointer"
                   >
-                    <span>{currentLang === 'en' ? 'View Landmark' : 'नक्शे पर देखें'}</span>
+                    <span>
+                      {currentLang === "en"
+                        ? "View Landmark"
+                        : "नक्शे पर देखें"}
+                    </span>
                     <ArrowRight className="w-3.5 h-3.5" />
                   </button>
                 </div>
@@ -329,7 +400,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
             },
           }}
           className={`mt-14 pt-8 border-t grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6 ${
-            theme === 'dark' ? 'border-white/10' : 'border-slate-200'
+            theme === "dark" ? "border-white/10" : "border-slate-200"
           }`}
         >
           {VILLAGE_STATS.map((stat, idx) => (
@@ -339,22 +410,28 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
                 hidden: { opacity: 0, y: 20 },
                 visible: { opacity: 1, y: 0, transition: { duration: 0.5 } },
               }}
-              whileHover={{ y: -4, borderColor: 'rgba(16, 185, 129, 0.4)' }}
+              whileHover={{ y: -4, borderColor: "rgba(16, 185, 129, 0.4)" }}
               className={`p-5 rounded-2xl border backdrop-blur-xl transition-all ${
-                theme === 'dark'
-                  ? 'bg-white/5 border-white/10 shadow-lg hover:shadow-[0_10px_30px_rgba(16,185,129,0.15)]'
-                  : 'bg-white border-slate-200 shadow-md hover:shadow-lg'
+                theme === "dark"
+                  ? "bg-white/5 border-white/10 shadow-lg hover:shadow-[0_10px_30px_rgba(16,185,129,0.15)]"
+                  : "bg-white border-slate-200 shadow-md hover:shadow-lg"
               }`}
             >
-              <div className={`text-3xl sm:text-4xl font-extrabold font-display-modern tracking-tight ${
-                theme === 'dark' ? 'text-white' : 'text-slate-900'
-              }`}>
+              <div
+                className={`text-3xl sm:text-4xl font-extrabold font-display-modern tracking-tight ${
+                  theme === "dark" ? "text-white" : "text-slate-900"
+                }`}
+              >
                 <AnimatedCounter value={stat.value} />
               </div>
-              <div className={`text-xs font-bold mt-1.5 ${theme === 'dark' ? 'text-emerald-400' : 'text-emerald-600'}`}>
+              <div
+                className={`text-xs font-bold mt-1.5 ${theme === "dark" ? "text-emerald-400" : "text-emerald-600"}`}
+              >
                 {stat.label[currentLang]}
               </div>
-              <div className={`text-[11px] mt-0.5 font-mono ${theme === 'dark' ? 'text-slate-400' : 'text-slate-500'}`}>
+              <div
+                className={`text-[11px] mt-0.5 font-mono ${theme === "dark" ? "text-slate-400" : "text-slate-500"}`}
+              >
                 {stat.subtext[currentLang]}
               </div>
             </motion.div>

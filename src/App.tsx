@@ -18,6 +18,7 @@ import { VillageFAQ } from "./components/VillageFAQ";
 import { SocialHub } from "./components/SocialHub";
 import { VisitorGuide } from "./components/VisitorGuide";
 import { Footer } from "./components/Footer";
+import { Carousel } from "./components/Carousel";
 
 export default function App() {
   const [currentLang, setCurrentLang] = useState<"en" | "hi">("en");
@@ -104,12 +105,18 @@ export default function App() {
       />
 
       {/* Live Marquee Ticker right under Navbar */}
-      <div className="pt-18">
+      <div className="pt-18 md:pt-28 flex items-center">
+        <div className="z-50 bg-red-600 px-5 py-2 -skew-x-12 shadow-lg border border-red-400/50">
+          <span className="block skew-x-12 text-white font-bold text-sm tracking-wide whitespace-nowrap">
+            LATEST NEWS
+          </span>
+        </div>
         <LiveTicker currentLang={currentLang} theme={theme} />
       </div>
 
       {/* Main Content Sections */}
       <main className="flex-1">
+        <Carousel />
         {/* Hero Section & Identity */}
         <HeroSection
           currentLang={currentLang}

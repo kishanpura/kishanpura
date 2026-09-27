@@ -1,27 +1,27 @@
-import React from 'react';
-import { motion } from 'motion/react';
+import React from "react";
+import { motion } from "motion/react";
 
 interface VillageLogoProps {
-  size?: 'sm' | 'md' | 'lg' | 'xl';
-  variant?: 'emblem' | 'full' | 'icon';
-  theme?: 'dark' | 'light';
+  size?: "sm" | "md" | "lg" | "xl";
+  variant?: "emblem" | "full" | "icon";
+  theme?: "dark" | "light";
   animated?: boolean;
   className?: string;
 }
 
 export const VillageLogo: React.FC<VillageLogoProps> = ({
-  size = 'md',
-  variant = 'full',
-  theme = 'dark',
+  size = "md",
+  variant = "full",
+  theme = "dark",
   animated = true,
-  className = '',
+  className = "",
 }) => {
   // Dimensional mappings
   const dimensions = {
-    sm: { icon: 32, text: 'text-sm', sub: 'text-[9px]' },
-    md: { icon: 42, text: 'text-base', sub: 'text-[11px]' },
-    lg: { icon: 56, text: 'text-xl', sub: 'text-xs' },
-    xl: { icon: 72, text: 'text-2xl', sub: 'text-sm' },
+    sm: { icon: 32, text: "text-sm", sub: "text-[9px]" },
+    md: { icon: 42, text: "text-base", sub: "text-[11px]" },
+    lg: { icon: 56, text: "text-xl", sub: "text-xs" },
+    xl: { icon: 72, text: "text-2xl", sub: "text-sm" },
   }[size];
 
   const dim = dimensions.icon;
@@ -65,7 +65,7 @@ export const VillageLogo: React.FC<VillageLogoProps> = ({
       {/* Outer Hexagonal Shield Ring */}
       <polygon
         points="50,4 92,26 92,74 50,96 8,74 8,26"
-        fill={theme === 'dark' ? '#090D16' : '#FFFFFF'}
+        fill={theme === "dark" ? "#090D16" : "#FFFFFF"}
         stroke="url(#goldGrad)"
         strokeWidth="2.5"
       />
@@ -78,21 +78,87 @@ export const VillageLogo: React.FC<VillageLogoProps> = ({
       />
 
       {/* Wheat Stalks (Left) */}
-      <g stroke="url(#goldGrad)" strokeWidth="1.8" strokeLinecap="round" fill="none">
+      <g
+        stroke="url(#goldGrad)"
+        strokeWidth="1.8"
+        strokeLinecap="round"
+        fill="none"
+      >
         <path d="M22,65 Q25,45 28,30" />
-        <ellipse cx="23" cy="40" rx="3.5" ry="1.5" transform="rotate(-30 23 40)" fill="url(#goldGrad)" />
-        <ellipse cx="27" cy="35" rx="3.5" ry="1.5" transform="rotate(30 27 35)" fill="url(#goldGrad)" />
-        <ellipse cx="24" cy="50" rx="4" ry="1.8" transform="rotate(-35 24 50)" fill="url(#goldGrad)" />
-        <ellipse cx="28" cy="46" rx="4" ry="1.8" transform="rotate(35 28 46)" fill="url(#goldGrad)" />
+        <ellipse
+          cx="23"
+          cy="40"
+          rx="3.5"
+          ry="1.5"
+          transform="rotate(-30 23 40)"
+          fill="url(#goldGrad)"
+        />
+        <ellipse
+          cx="27"
+          cy="35"
+          rx="3.5"
+          ry="1.5"
+          transform="rotate(30 27 35)"
+          fill="url(#goldGrad)"
+        />
+        <ellipse
+          cx="24"
+          cy="50"
+          rx="4"
+          ry="1.8"
+          transform="rotate(-35 24 50)"
+          fill="url(#goldGrad)"
+        />
+        <ellipse
+          cx="28"
+          cy="46"
+          rx="4"
+          ry="1.8"
+          transform="rotate(35 28 46)"
+          fill="url(#goldGrad)"
+        />
       </g>
 
       {/* Wheat Stalks (Right) */}
-      <g stroke="url(#goldGrad)" strokeWidth="1.8" strokeLinecap="round" fill="none">
+      <g
+        stroke="url(#goldGrad)"
+        strokeWidth="1.8"
+        strokeLinecap="round"
+        fill="none"
+      >
         <path d="M78,65 Q75,45 72,30" />
-        <ellipse cx="77" cy="40" rx="3.5" ry="1.5" transform="rotate(30 77 40)" fill="url(#goldGrad)" />
-        <ellipse cx="73" cy="35" rx="3.5" ry="1.5" transform="rotate(-30 73 35)" fill="url(#goldGrad)" />
-        <ellipse cx="76" cy="50" rx="4" ry="1.8" transform="rotate(35 76 50)" fill="url(#goldGrad)" />
-        <ellipse cx="72" cy="46" rx="4" ry="1.8" transform="rotate(-35 72 46)" fill="url(#goldGrad)" />
+        <ellipse
+          cx="77"
+          cy="40"
+          rx="3.5"
+          ry="1.5"
+          transform="rotate(30 77 40)"
+          fill="url(#goldGrad)"
+        />
+        <ellipse
+          cx="73"
+          cy="35"
+          rx="3.5"
+          ry="1.5"
+          transform="rotate(-30 73 35)"
+          fill="url(#goldGrad)"
+        />
+        <ellipse
+          cx="76"
+          cy="50"
+          rx="4"
+          ry="1.8"
+          transform="rotate(35 76 50)"
+          fill="url(#goldGrad)"
+        />
+        <ellipse
+          cx="72"
+          cy="46"
+          rx="4"
+          ry="1.8"
+          transform="rotate(-35 72 46)"
+          fill="url(#goldGrad)"
+        />
       </g>
 
       {/* Flowing Himalayan Canal Water Waves */}
@@ -115,14 +181,24 @@ export const VillageLogo: React.FC<VillageLogoProps> = ({
       {/* Center Kinnow Citrus Symbol */}
       <circle cx="50" cy="48" r="14" fill="url(#citrusGrad)" />
       {/* Citrus Leaf */}
-      <path
-        d="M50,34 Q56,30 58,24 Q50,26 50,34 Z"
-        fill="#34D399"
-      />
+      <path d="M50,34 Q56,30 58,24 Q50,26 50,34 Z" fill="#34D399" />
       {/* Leaf Vein */}
-      <path d="M51,33 Q54,28 57,25" stroke="#059669" strokeWidth="0.8" fill="none" />
+      <path
+        d="M51,33 Q54,28 57,25"
+        stroke="#059669"
+        strokeWidth="0.8"
+        fill="none"
+      />
       {/* Sunlit Citrus Glow */}
-      <ellipse cx="46" cy="43" rx="4" ry="2" transform="rotate(-25 46 43)" fill="#FEF08A" opacity="0.6" />
+      <ellipse
+        cx="46"
+        cy="43"
+        rx="4"
+        ry="2"
+        transform="rotate(-25 46 43)"
+        fill="#FEF08A"
+        opacity="0.6"
+      />
 
       {/* Centennial Crown / Star */}
       <polygon
@@ -139,16 +215,18 @@ export const VillageLogo: React.FC<VillageLogoProps> = ({
         fontWeight="800"
         fontFamily="'Plus Jakarta Sans', sans-serif"
         fill="#FFFFFF"
-        style={{ letterSpacing: '0.5px' }}
+        style={{ letterSpacing: "0.5px" }}
       >
         K
       </text>
     </svg>
   );
 
-  if (variant === 'icon' || variant === 'emblem') {
+  if (variant === "icon" || variant === "emblem") {
     return (
-      <div className={`inline-flex items-center justify-center relative ${className}`}>
+      <div
+        className={`inline-flex items-center justify-center relative ${className}`}
+      >
         {animated ? (
           <motion.div
             whileHover={{ scale: 1.08, rotate: [0, -3, 3, 0] }}
@@ -181,17 +259,26 @@ export const VillageLogo: React.FC<VillageLogoProps> = ({
         <div className="flex items-center gap-2">
           <span
             className={`font-display-modern font-extrabold tracking-tight ${dimensions.text} ${
-              theme === 'dark' ? 'text-white' : 'text-slate-900'
+              theme === "dark" ? "text-white" : "text-slate-900"
             }`}
           >
             Kishanpura
+          </span>
+          <span
+            className={`font-display-modern font-extrabold tracking-tight ${dimensions.text} ${
+              theme === "dark" ? "text-white" : "text-slate-900"
+            }`}
+          >
+            Uttrada
           </span>
           <span className="text-[10px] font-mono uppercase px-2 py-0.5 rounded-full bg-emerald-500/10 text-emerald-400 border border-emerald-500/30 font-bold hidden sm:inline-block">
             PIN 335062
           </span>
         </div>
-        <p className={`font-mono ${theme === 'dark' ? 'text-slate-400' : 'text-slate-500'} ${dimensions.sub} leading-none mt-0.5`}>
-          Utrada · Rajasthan · Est. 1926
+        <p
+          className={`font-mono ${theme === "dark" ? "text-slate-400" : "text-slate-500"} ${dimensions.sub} leading-none mt-0.5`}
+        >
+          Hanumangarh · Rajasthan · Est. 1936
         </p>
       </div>
     </div>
